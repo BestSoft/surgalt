@@ -1,0 +1,70 @@
+\documentclass[a4paper,11pt]{report}
+\usepackage[utf8]{inputenc} % UTF8 юникод текст оруулах
+\usepackage[T2A]{fontenc} % кирил үсгийн кодчилол
+\usepackage[mongolian]{babel} % олон хэлний текст
+
+\usepackage{graphicx} % зураг оруулах
+\usepackage{epstopdf} 
+\usepackage{latexsym} 
+\usepackage{rotating} % эргүүлэх
+\usepackage{fancybox} % хүрээлэх
+%\usepackage{amsmath} % гоё математикийн тэмдэг
+\usepackage{bm} % дармал математик
+\usepackage{color} % өнгөөр бичих
+\usepackage{fancyhdr} % хуудасны хөл, толгой
+%\usepackage[backend=biber, url=true, natbib=true]{biblatex}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+%\bibliographystyle{plain}
+%\bibliography{ref.bib}
+%\addbibresource{ref.bib}
+\bibliographystyle{abbrv}
+
+\usepackage{pgf}
+\usepackage{tikz} % зураг зурах
+\usetikzlibrary{arrows,automata}
+
+\usepackage{thesis} % ШУТИС -ийн тезисийн формат
+
+\pagestyle{fancy}
+
+\begin{document}
+
+\pagenumbering{roman}
+
+% Гарчиг, зохиогч, горилсон зэрэг, тэнхим/багийн нэр болон он сарыг оруулах.
+% Оруулсны дараах байдал:
+%\thesistitle
+%	{Диссертаци/тезисийн нэр}
+%	{Зохиогчийн нэр}
+%	{Горилсон зэрэг}
+%	{Тэнхим/багийн нэр}
+%	{Огноо}
+%\thesistitle командын тодорхойлолт thesis.sty -д байгаа бөгөөд
+% өөр бусад тохиргоог энд хийж болно.
+
+\thesistitle
+	{Цахим сургалтын цогц систем}
+	{\emph{Т.Золбоо\\t.zolboo@must.edu.mn}}
+	{\emph{''Компьютерийн ухаан''} -аар доктор}
+	{\emph{Програмчлалын технологийн профессорын баг}}
+	{\emph{2013-09-29}}
+
+\include{contents}
+
+\pagenumbering{arabic}
+\include{chap1}
+\include{chap2}
+\include{chap3}
+\include{chap4}
+\include{chap5}
+\include{bib}
+
+% Хэрэв хавсралт байхгүй бол дараах мөрүүдийг хасаж болно.
+% Олон хавсралттай бол нэмэж болно.
+\appendix
+\include{apdxa}
+\include{apdxb}
+
+\end{document}
