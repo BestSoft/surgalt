@@ -6,10 +6,10 @@ class DataBase {
 
     public static function getInstance() {
         if (!isset(self::$instance)) {
-            $host = 'humuun.net';
-            $user = 'buteemjc';
-            $password = 'prmr316 dn dkl pkldkk';
-            $database = 'buteemjc_data';
+            $host = 'localhost';
+            $user = 'surgalt';
+            $password = '123456';
+            $database = 'surgalt_db';
             self::$instance = mysqli_connect($host, $user, $password, $database);
             self::$instance->set_charset('utf8');
         }
