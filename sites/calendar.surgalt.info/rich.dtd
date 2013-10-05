@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT CDs (CD)>
+<!ELEMENT CD (CDName, tracks, trackCR)>
+<!ELEMENT CDName (#PCDATA)>
+<!ELEMENT tracks (track+)>
+<!ELEMENT track (Title, Artist, Genres, length)>
+<!ELEMENT Genres (Genre)>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT Artist (#PCDATA)>
+<!ELEMENT Genre (#PCDATA)>
+<!ELEMENT length (#PCDATA)>
+<!ELEMENT trackCR (#PCDATA)>
+
+<!ATTLIST track trackNumber (CDATA) #REQUIRED>
+<!ATTLIST CD id CDATA #REQUIRED>
+<!ENTITY rnb "R and B">
+<!ENTITY hh "Hip Hop">
+<!ENTITY p "Pop">
+<!ENTITY copyright "@Copyright">

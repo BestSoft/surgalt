@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE CDs SYSTEM "rich.dtd">
+    <CDs>
+        <CD id="001">
+        <CDName>UK Top 40 Singles</CDName>
+        <tracks>
+            <track trackNumber="1">
+                <Title>Get Up (Rattle)</Title>
+                <Artist>Bingo Players Feat Far East Movement</Artist>
+                <Genres>
+                    <Genre>&rnb;</Genre>
+                </Genres>
+                <length>00:02:47</length>
+            </track>
+            <track>
+                <Title>Radioactive</Title>
+                <Artist>Rita Ora</Artist>
+                <Genres>
+                    <Genre></Genre>
+                </Genres>
+                <length></length>
+            </track>
+            <track>
+                <Number></Number>
+                <Title></Title>
+                <Artist></Artist>
+                <Genres>
+                    <Genre></Genre>
+                </Genres>
+                <length></length>
+            </track>
+            <track>
+                <Number></Number>
+                <Title></Title>
+                <Artist></Artist>
+                <Genres>
+                    <Genre></Genre>
+                </Genres>
+                <length></length>
+            </track>
+        </tracks>
+        <trackCR>&copyright</trackCR>
+        </CD>
+    </CDs>
