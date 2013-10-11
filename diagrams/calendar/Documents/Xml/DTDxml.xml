@@ -12,33 +12,23 @@
                 </Genres>
                 <length>00:02:47</length>
             </track>
-            <track>
+            <track trackNumber="2">
                 <Title>Radioactive</Title>
                 <Artist>Rita Ora</Artist>
                 <Genres>
-                    <Genre></Genre>
+                    <Genre>&e;</Genre>
                 </Genres>
-                <length></length>
+                <length>00:04:11</length>
             </track>
-            <track>
-                <Number></Number>
-                <Title></Title>
-                <Artist></Artist>
+            <track trackNumber="3">
+                <Title>Gangnam Style</Title>
+                <Artist>PSY</Artist>
                 <Genres>
-                    <Genre></Genre>
+                    <Genre>&kp;</Genre>
                 </Genres>
-                <length></length>
-            </track>
-            <track>
-                <Number></Number>
-                <Title></Title>
-                <Artist></Artist>
-                <Genres>
-                    <Genre></Genre>
-                </Genres>
-                <length></length>
+                <length>00:03:39</length>
             </track>
         </tracks>
-        <trackCR>&copyright</trackCR>
+        <trackCR>&copyright;</trackCR>
         </CD>
     </CDs>

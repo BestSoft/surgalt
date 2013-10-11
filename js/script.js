@@ -7,7 +7,6 @@ $(document).ready(function(){
       return $('#Settings').html();
     }
   });
-  $("li").hide();
   $(".algaboldog").fadeIn(function(){
       while($(".algaboldog"))
       {
@@ -15,4 +14,12 @@ $(document).ready(function(){
       };
   });
 });
+var num = 100; //number of pixels before modifying styles
 
+$(window).bind('scroll', function () {
+    if ($(window).scrollTop() > num) {
+        $('#1').fadeOut();
+    } else {
+        $('#1').fadeIn();
+    }
+});

@@ -16,7 +16,7 @@
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
         <main class="bs-masthead" id="content" role="main">
-            <div class="container">
+            <div class="container container-home">
                 <?php include 'home.php'; ?>
             </div>
         </main>

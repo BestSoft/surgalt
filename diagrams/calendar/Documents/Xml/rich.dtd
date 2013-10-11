@@ -11,9 +11,11 @@
 <!ELEMENT length (#PCDATA)>
 <!ELEMENT trackCR (#PCDATA)>
 
-<!ATTLIST track trackNumber (CDATA) #REQUIRED>
+<!ATTLIST track trackNumber CDATA #REQUIRED>
 <!ATTLIST CD id CDATA #REQUIRED>
 <!ENTITY rnb "R and B">
 <!ENTITY hh "Hip Hop">
 <!ENTITY p "Pop">
+<!ENTITY e "Electro">
+<!ENTITY kp "KPop">
 <!ENTITY copyright "@Copyright">
