@@ -1,0 +1,7 @@
+.navbar .navbar-default .navbar-menu2 {
+    position:absolute;
+}
+.fixed {
+    position:fixed;
+    top:0;
+}
