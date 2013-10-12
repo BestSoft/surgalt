@@ -1,7 +1,8 @@
 <?php
 $user = User::getInstance();
 ?>
-
+<button id="btn" class="btn btn-default" style="position: absolute; margin-left: 30%; margin-top: 0.5%"><i class="icon icon-user"></i><?php echo " ".$user->getEmail() ?></button>
+<div id="Settings" style="display: none; width: 450px;">
 <div>
     <img src="<?php echo BASE_URL; ?>/img/avatar.jpg" class="img-polaroid" style="height: 100px;"><br>
     <i><b>Овог нэр:</b> <?php echo $user->getUsrLnm()." ".$user->getUsrNm() ?></i><br>
@@ -15,3 +16,4 @@ $user = User::getInstance();
     Гарах
     </button>
 </div>
+    </div>

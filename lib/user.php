@@ -115,6 +115,9 @@ class User {
     public function getUsrLnm() {
         return $this->UsrLnm;
     }
+    public function getUsrCd() {
+        return $this->UsrCd;
+    }
 
     public function getEmail() {
         return $this->Email;
