@@ -1,3 +1,14 @@
+
+<?php 
+    require_once '../../lib/database.php';
+    $c = new DataBase;
+    $c->getInstance();
+    $a = mysql_query("select * from user");
+    $b = mysql_fetch_assoc($a);
+    print_r($a);
+?>
+
+
 <link rel="stylesheet" href="css/bootstrap.css">
 <style>
     .neg_1
@@ -23,52 +34,6 @@
         font-size: 20px;
     }
 </style>
-<div class="Menu_tree_form">
-    <div class="neg_2">
-        <a href="lol.com" class="ded_menu">1</a> <i class="icon-plus"></i>
-        <div class="neg_2 dotorhi_1">
-            11 <i class="icon-plus"></i>
-            <div class="neg_2 dotorhi_1">
-                111
-            </div>
-            <div class="neg_2 dotorhi_1">
-                112
-            </div>
-        </div>
-        <div class="neg_2 dotorhi_1">
-            12 <i class="icon-plus"></i>
-            <div class="neg_2 dotorhi_1">
-                121
-            </div>
-            <div class="neg_2 dotorhi_1">
-                122
-            </div>
-        </div>
-    </div>
-    <div class="neg_2">
-        <a href="lol.com" class="ded_menu">1</a> <i class="icon-plus"></i>
-        <div class="neg_2 dotorhi_1">
-            11 <i class="icon-plus"></i>
-            <div class="neg_2 dotorhi_1">
-                111
-            </div>
-            <div class="neg_2 dotorhi_1">
-                112
-            </div>
-        </div>
-        <div class="neg_2 dotorhi_1">
-            12 <i class="icon-plus"></i>
-            <div class="neg_2 dotorhi_1">
-                121
-            </div>
-            <div class="neg_2 dotorhi_1">
-                122
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <?php 
     $ded_menu[0]["title"] = "Өмнө үзэж байсан хичээлүүд";
     $ded_menu[1]["title"] = "Одоо судалж буй хичээлүүд";
@@ -135,12 +100,9 @@
         echo "</div>";
 }
 
-
-
-echo "<hr>";
-
-
 Menu_uusgeh($ded_menu, $dund_menu, $dood_menu);
+
+
 
 ?>
 <script src="js/jquery 1.10.2.js"></script>
