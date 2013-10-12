@@ -1,13 +1,17 @@
 <?php
 
-class CalendarViewClass {
+class CalendarView {
 
     function __construct() {
         
     }
     
-    function view($param) {
-        
+    function display() {
+        if (User::getInstance()->isGuest()) {
+            echo 'Хандах эрхгүй байна.';
+        } else {
+            include_once 'calendar.html.php';
+        }
     }
     
     function viewLessonTimeTable($param) {

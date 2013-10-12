@@ -24,4 +24,5 @@
             <?php include PATH_BASE . '/tpl/footer.php'; ?>
         </div>
     </body>
-</html> 
+</html>
+ 

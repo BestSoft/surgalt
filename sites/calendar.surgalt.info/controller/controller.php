@@ -1,10 +1,9 @@
 <?php
 
-class controllerClass {
+class Controller {
 
-    function __construct() {
+    function execute() {
         
     }
 
 }
-?>
