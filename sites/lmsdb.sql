@@ -19,9 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `lmsdb`
 --
-CREATE DATABASE IF NOT EXISTS `lmsdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `lmsdb`;
-
 -- --------------------------------------------------------
 
 --
