@@ -1,0 +1,10 @@
+.navbar .navbar-default .navbar-menu2 {
+    position:absolute;
+}
+.fixed {
+    position:fixed;
+    top:0;
+}
+.hero-unit{
+    background-color: #000;
+}
