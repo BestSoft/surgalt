@@ -6,10 +6,15 @@ error_reporting(E_ALL);
 define('PATH_BASE', dirname(__FILE__));
 define('BASE_URL', '/surgalt');
 define('HOSTNAME', isset($_GET['host']) ? $_GET['host'] : 'surgalt.info');
-//Check session start
-if (empty($_SESSION)) {
-    session_start();
-}
 
 require_once PATH_BASE . '/lib/database.php';
-include PATH_BASE . '/sites/' . HOSTNAME . '/index.php';
+require_once PATH_BASE . '/lib/user.php';
+$user = User::getInstance();
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    $user->signIn($_POST['email'], $_POST['password']);
+}
+include PATH_BASE . '/lib/basecontroller.php';
+include PATH_BASE . '/sites/' . HOSTNAME . '/controller.php';
+
+$controller = new Controller();
+$controller->execute();
