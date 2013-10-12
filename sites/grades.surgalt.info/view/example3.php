@@ -10,13 +10,15 @@
     }
     .table_1
     {        
-        border-right-color: black;       
+        border-right-color: black;   
+        margin-right: 0px;
     }
     .table_3
     {
         border-left: 1px;
         border-style: solid;
         border-left-color: black;
+        margin-right: 0px;
     }
     .neg_1
     {
@@ -39,6 +41,21 @@
         text-decoration: underline;
         font-style: normal;
         font-size: 20px;
+    }
+    .container-fluid
+    {
+        margin-top: 100px;
+    }
+    .row-fluid
+    {
+    }
+    .Menu_tree_form
+    {
+        margin-bottom: 0px;
+    }
+    .table
+    {
+        margin-bottom: 0px;
     }
 </style>
     <div class="container-fluid">
