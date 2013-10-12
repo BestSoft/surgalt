@@ -1,3 +1,14 @@
+
+<?php 
+    require_once '../../lib/database.php';
+    $c = new DataBase;
+    $c->getInstance();
+    $a = mysql_query("select * from user");
+    $b = mysql_fetch_assoc($a);
+    print_r($a);
+?>
+
+
 <link rel="stylesheet" href="css/bootstrap.css">
 <style>
     .neg_1
@@ -90,6 +101,8 @@
 }
 
 Menu_uusgeh($ded_menu, $dund_menu, $dood_menu);
+
+
 
 ?>
 <script src="js/jquery 1.10.2.js"></script>
