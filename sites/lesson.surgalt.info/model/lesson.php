@@ -5,6 +5,7 @@
  */
 
 class LessonModel {
+
     //put your code here
     public $lCode;
     public $lName;
@@ -12,22 +13,35 @@ class LessonModel {
     public $lYear;
     public $lWeek;
     public $lTime;
-    
-    function checkUser(){
+
+    function checkUser() {
+
         // Хэрэглэгчийн хичээл эсэх
-        function checkUserType(){
+        function checkUserType() {
             // Хэрвээ хичээлийн хэрэглэгч бол багш эсвэл сурагч аль нь болох
         }
+
     }
-    function getLessonlist(){
-        //Хичээлийн жагсаалт авах
+
+    public static function getLessonlist($usrId) {
+        $db = DataBase::getInstance();
+        $sql = 'SELECT b.* FROM userlesson AS a LEFT JOIN lesson AS b ON a.LsnID = b.LsnID WHERE a.UsrID = ' . $usrId;
+        $query = $db->query($sql);
+        $result = array();
+        while ($test = $query->fetch_assoc()) {
+            $result[] = $test;
+        }
+        return $result;
     }
-    function getLessonContent($lCode){
+
+    function getLessonContent($lCode) {
         // Хичээлийн агуулга авах
     }
-    function getLessonNews($lCode){
+
+    function getLessonNews($lCode) {
         //Хичээлтэй холбоотой мэдээг авах
     }
+
 }
 
 ?>

@@ -36,8 +36,17 @@
                 </form>
                 <?php
             } else {
-                $user = User::getInstance();
-                echo 'Сайн байна уу, ' . $user->getUsrNm() . '!';
+                ?>
+                <div class="items">
+                    <?php foreach ($this->tests as $test) { ?>
+                        <div>
+                            <?php echo $test['LsnNm']; ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <?php
             }
             ?>
         </div>
