@@ -15,10 +15,8 @@
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
-        <main class="bs-masthead" id="content" role="main">
-            <div class="container">
-                <?php include 'home.php'; ?>
-            </div>
+        <main class="bs-masthead" id="content" role="main">            
+                <?php  include 'example3.php'; ?>
         </main>
         <?php include PATH_BASE . '/tpl/footer.php'; ?>
     </body>

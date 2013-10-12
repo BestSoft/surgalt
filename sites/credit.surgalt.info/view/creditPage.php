@@ -71,6 +71,8 @@
 <td></td>
 </tr>
 </table>
+</br></br>
+<button class="btn btn-small btn-primary" type="button">Баталгаажуулах</button>
 <script>
    $(function(){
       $(document).ready(function(){
