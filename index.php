@@ -10,8 +10,10 @@ define('HOSTNAME', isset($_GET['host']) ? $_GET['host'] : 'surgalt.info');
 require_once PATH_BASE . '/lib/database.php';
 require_once PATH_BASE . '/lib/user.php';
 $user = User::getInstance();
-if (isset($_POST['email']) && isset($_POST['password'])) {
+if ($user->isGuest() && isset($_POST['email']) && isset($_POST['password'])) {
     $user->signIn($_POST['email'], $_POST['password']);
+} else if (!$user->isGuest() && isset($_GET['action']) && $_GET['action'] == 'logout') {
+    $user->signOut();
 }
 include PATH_BASE . '/lib/basecontroller.php';
 include PATH_BASE . '/sites/' . HOSTNAME . '/controller.php';

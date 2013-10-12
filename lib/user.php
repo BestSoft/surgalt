@@ -136,7 +136,8 @@ class User {
         return $this->UsrTpID == USR_ADMIN;
     }
 
-    public static function signOut() {
+    public function signOut() {
+        unset($_SESSION['profile']);
         session_destroy();
     }
 
