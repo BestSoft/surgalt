@@ -4,7 +4,7 @@
  * Хичээлийн модел
  */
 
-class lesson_m {
+class LessonModel {
     //put your code here
     public $lCode;
     public $lName;

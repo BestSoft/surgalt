@@ -4,7 +4,7 @@
  * Хичээлийн тодорхойлолт оруулах модел
  */
 
-class lessondef_m {
+class LessonProfileModel {
     //put your code here
     public $FldID;
     public $Fld_order;

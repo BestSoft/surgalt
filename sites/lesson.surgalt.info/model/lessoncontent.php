@@ -4,7 +4,7 @@
  * Хичээлийн агуулга модел класс
  */
 
-class lessoncontent_m {
+class LessonContentModel {
     //put your code here
     public $l_ConId; // 
     public $l_Title; //

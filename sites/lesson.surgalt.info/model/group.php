@@ -4,7 +4,7 @@
  * Группын модель класс
  */
 
-class group_m {
+class GroupModel {
     //put your code here
     public $groupId;
     

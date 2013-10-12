@@ -4,7 +4,7 @@
  * Даалгаврын модель класс
  */
 
-class task_m {
+class HomeWorkModel {
     //put your code here
     public $TaskID;
     public $UserID;
