@@ -20,7 +20,7 @@
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
         <main class="bs-masthead" id="content" role="main" style="margin-top: 0%; background-color: #eee;">
             <div class="container" style="height: 700px; margin-top: 6%;">
-                 <?php include 'home.php'; ?>
+                 <?php include $include; ?>
             </div>
         </main>
         <div style="background-color: #eee;">
