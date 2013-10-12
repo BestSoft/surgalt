@@ -23,52 +23,6 @@
         font-size: 20px;
     }
 </style>
-<div class="Menu_tree_form">
-    <div class="neg_2">
-        <a href="lol.com" class="ded_menu">1</a> <i class="icon-plus"></i>
-        <div class="neg_2 dotorhi_1">
-            11 <i class="icon-plus"></i>
-            <div class="neg_2 dotorhi_1">
-                111
-            </div>
-            <div class="neg_2 dotorhi_1">
-                112
-            </div>
-        </div>
-        <div class="neg_2 dotorhi_1">
-            12 <i class="icon-plus"></i>
-            <div class="neg_2 dotorhi_1">
-                121
-            </div>
-            <div class="neg_2 dotorhi_1">
-                122
-            </div>
-        </div>
-    </div>
-    <div class="neg_2">
-        <a href="lol.com" class="ded_menu">1</a> <i class="icon-plus"></i>
-        <div class="neg_2 dotorhi_1">
-            11 <i class="icon-plus"></i>
-            <div class="neg_2 dotorhi_1">
-                111
-            </div>
-            <div class="neg_2 dotorhi_1">
-                112
-            </div>
-        </div>
-        <div class="neg_2 dotorhi_1">
-            12 <i class="icon-plus"></i>
-            <div class="neg_2 dotorhi_1">
-                121
-            </div>
-            <div class="neg_2 dotorhi_1">
-                122
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <?php 
     $ded_menu[0]["title"] = "Өмнө үзэж байсан хичээлүүд";
     $ded_menu[1]["title"] = "Одоо судалж буй хичээлүүд";
@@ -134,11 +88,6 @@
                 }
         echo "</div>";
 }
-
-
-
-echo "<hr>";
-
 
 Menu_uusgeh($ded_menu, $dund_menu, $dood_menu);
 
