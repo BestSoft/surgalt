@@ -12,10 +12,8 @@
         <li><a href="?host=calendar.surgalt.info"><span class="ext co"></span><i class="icon icon-calendar"></i> Цаглабар</a></li>
         <li><a href="?host=credit.surgalt.info"><span class="ext tv"></span><i class="icon icon-time"></i> Цагийн тооцоо</a></li>
       </ul>
-    <button id="btn" class="btn btn-default" style="position: absolute; margin-left: 30%; margin-top: 0.5%"><i class="icon icon-user"></i>Sw10d219@csms.edu.mn</button>
-    <div id="Settings" style="display: none; width: 450px;">
         <?php include_once 'userSettings.php'; ?>
-    </div>
+    
     </div>
   </div>
 </div>
