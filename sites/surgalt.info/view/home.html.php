@@ -38,6 +38,7 @@
             } else {
                 $user = User::getInstance();
                 echo 'Сайн байна уу, ' . $user->getUsrNm() . '!';
+                echo '<a href="' . BASE_URL . '/?action=logout">гарах</a>';
             }
             ?>
         </div>
