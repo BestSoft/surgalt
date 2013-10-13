@@ -17,7 +17,8 @@
         <form action="" method="">
             <br>
             <br>
-            <h3> Хичээлийн агуулга оруулах хэсэг</h3>
+            
+            <h3> Хичээлийн агуулга оруулах хэсэг <i class="icon-arrow-right"></i></h3>
             <br>
             <br>
         <table class="table-bordered">
