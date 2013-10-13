@@ -4,7 +4,7 @@
  * Хичээлийн агуулгын хуудас
  */
 
-class lessoncontent {
+class lessoncontentview {
     //put your code here
    
     
@@ -24,5 +24,6 @@ function getpdf(){
     // Хичээлтэй холбоотой pdf файлыг харуулах
 }
 }
+require 'home.php';
 
 ?>

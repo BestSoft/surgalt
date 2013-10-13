@@ -4,7 +4,7 @@
  *  Хичээлийн тодорхойлох хуудас
  */
 
-class lessondefinition {
+class lessondefinitionview {
     //put your code here
     
     function showfield(){}

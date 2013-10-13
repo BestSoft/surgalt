@@ -4,7 +4,7 @@
  * Хичээлийн багийн групп
  */
 
-class group {
+class groupview {
     //put your code here
     function shownews(){
         //
