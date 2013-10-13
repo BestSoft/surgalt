@@ -1,3 +1,11 @@
+.table-bordered{
+    width: 800px;
+    height: 500px;
+}
+.table-urgun{
+    width: 800px;
+    height: 500px;
+}
 .navbar .navbar-default .navbar-menu2 {
     position:absolute;
 }
