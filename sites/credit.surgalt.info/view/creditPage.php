@@ -45,7 +45,7 @@
     <tr>
         <td>1</td>
         <td><a href="#" class="dateSelect">8/28</a></td>  
-        <td><a href="#" class="sCount">30</a></td>
+        <td><a href="#" class="sCount" style="width: 14px;">30</a></td>
         <td><a href="#" class="lType">Лаб</a></td> 
         <td><a href="#" class="comment">Орчны тохиргоо хийх</a></td>
         <td><a href="#" class="time">2</a></td>
@@ -73,7 +73,9 @@
 </table>
 </br></br>
 <button class="btn btn-small btn-primary" type="button">Баталгаажуулах</button>
-<script>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button class="btn btn-small btn">татгалцах</button>
+            <script>
    $(function(){
       $(document).ready(function(){
         $('.dateSelect').editable({
@@ -90,7 +92,7 @@
              name: 'sCount',
              url: 'post.php',
              title: 'Хүний тоо',
-             placement:'right',
+             placement:'right'
         });
         $('.lType').editable({
             type: 'select',
