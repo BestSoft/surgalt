@@ -13,8 +13,7 @@
         <script src="<?php echo BASE_URL; ?>/js/script.js"></script>
      </head>
     <body>
-        
-        <form action="" method="">
+        <form action="connector.php" method="post">
             <br>
             <br>
             <br>
@@ -27,40 +26,67 @@
         <table class="table-urgun">
             <tr>
                <td width="300"> <label> Хичээлийн гарчиг</label> </td>
-               <td> <input type="text" placeholder="Хичээлийн гарчгийг оруулна уу."> </td>
+               <td> <input type="text" name="title" placeholder="Хичээлийн гарчгийг оруулна уу."> </td>
                <td></td>
             </tr>
             <tr>
-            <td colspan="2">​<textarea class="span9" id="txtArea">Хичээлийн тайлбар оруулна уу.</textarea>
-            </td>
+                <td><label> Хичээлийн төрөл</label></td>
+                <td> <input type="text" name="ltype" placeholder="Хичээлийн төрөл."> </td>
             </tr>
             <tr>
-            <td> <label> Хичээлийн файлууд хавсаргах</label> </td>
-            <td> <input type="text" placeholder="Хичээлийн файлууд хавсаргах."> </td>
+                <td colspan="2">​<textarea class="span9" name="desc" id="txtArea">Хичээлийн тайлбар оруулна уу.</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td> <label> Хичээлийн файлууд хавсаргах</label> </td>
+                <td> <input type="text" name="attachment" placeholder="Хичээлийн файлууд хавсаргах."> </td>
             </tr>
             <tr>
             <td> Холбоос оруулах</td>
-            <td class="span5"><input type="text" name="ovog" height="30" width="400"/> <input type="button" value="+" /> </td>
+            <td class="span5"><input type="text" name="" height="30" width="400"/> <input type="button" value="+" /> </td>
             </tr>
-           <tr> 
-           <td colspan="2">​<textarea class="span9" id="txtArea">Ашиглах материал оруулна уу..</textarea></td>
+             <tr> 
+           <td colspan="2">​<textarea class="span9" name="usemtrl" id="txtArea">Ашиглах материал оруулна уу..</textarea></td>
            </tr>
            <tr>
+            <td> Долоо хоног</td>
+            <td><input type="text" name="week"/></td>
+            </tr>
+            <tr>
+                <td> Эрэмбэ </td>
+                <td><input type="text" name="sort"/></td>
+            </tr>
+           <tr>
             <td> Даалгаврын оноо</td>
-            <td><input type="text" name="ovog"/></td>
+            <td><input type="text" name="selfpnt"/></td>
             </tr>
             <tr> 
             <td>Даалгаврын дуусах хугацаа </td>
-            <td><input type="text" name="ovog"/></td>
+            <td><input type="text" name="selfenddt"/></td>
             </tr>
-             <tr>
-                <td> Эрэмбэ </td>
-                <td><input type="text" name="ovog"/></td>
+           
+            
+            
+            <tr> 
+            <td>Оруулсан хэрэглэгчийн дугаар</td>
+            <td><input type="text" name="insid"/></td>
+            </tr>
+            <tr> 
+            <td> Оруулсан  огноо </td>
+            <td><input type="text" name="insdt"/></td>
+            </tr>
+            <tr> 
+            <td>Зассан хэрэглэгчийн дугаар </td>
+            <td><input type="text" name="updid"/></td>
+            </tr>
+            <tr> 
+            <td>Зассан огноо </td>
+            <td><input type="text" name="upddt"/></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                   <center> <button type="submit" class="btn btn-primary"> Оруулах</button>
+                   <center> <button type="insertlessoncontent" class="btn btn-primary"> Оруулах</button>
                     <button type="button" class="btn"> Болих</button>
                     </center>
                 </td>
