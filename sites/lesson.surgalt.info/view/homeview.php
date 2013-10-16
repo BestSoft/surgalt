@@ -86,7 +86,7 @@
             <tr>
                 <td></td>
                 <td>
-                   <center> <button type="insertlessoncontent" class="btn btn-primary"> Оруулах</button>
+                   <center> <button type="submit"  name ="insertlessoncontent" class="btn btn-primary"> Оруулах</button>
                     <button type="button" class="btn"> Болих</button>
                     </center>
                 </td>

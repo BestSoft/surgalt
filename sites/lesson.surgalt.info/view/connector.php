@@ -14,7 +14,8 @@ if (isset($_POST["insertlessoncontent"]))
                         '".$_POST["selfpnt"]."', '".$_POST["selfenddt"]."','8',  '".$_POST["insid"]."', '".$_POST["insdt"]."', 
                             '".$_POST["updid"]."', ".$_POST["upddt"].")";
 		mysql_query($insQuery);
-		header("Location: index.php");
+                echo 'insertes lessoncontent';
+//		header("Location: index.php");
 	}
         else {
             echo 'utga orj ireegui';
