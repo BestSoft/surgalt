@@ -169,13 +169,3 @@
         </div>
     </div>
 <script src="js/jquery 1.10.2.js"></script>
-<script>
-    $(document).ready(function(){
-        $(".neg_2").children(".icon-plus").click(function(){
-            $(this).attr("class","icon-minus");
-            $(this).siblings("div").slideDown();
-            $(this).parent().siblings("div").children("div").slideUp();            
-            $(this).parent().siblings("div").children("i").attr("class","icon-plus");
-        });
-    });
-</script>

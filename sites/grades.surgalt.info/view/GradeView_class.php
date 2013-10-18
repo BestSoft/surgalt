@@ -101,15 +101,14 @@ class GradePage
     }
     
     public static function DrawStudentMenu_prev()
-            {                
-            ?>
-            <div class="neg_2"><a href="#">Өмнө судалж байсан хичээлүүд</a> <i class="icon-plus"></i>
-                <?php
+            {        
                 $query = Lesson::GetStudentLesson_prev();
                 $prev = 0;
                 $start = null;
         if(mysqli_num_rows($query) > 0)
-            { 
+            { ?>
+            <div class="neg_2"><a href="#">Өмнө судалж байсан хичээлүүд</a> <i class="icon-plus"></i>
+                <?php
                 while($result = $query->fetch_assoc())
                     {
                         $year = Decode::DecodeYear($result["LsnYear"]);
@@ -134,7 +133,7 @@ class GradePage
             }
             else
                 {
-                echo "<div class='neg_2'><a href='#'>Та энэ жил хичээл сонгоогүи байна</a> <i class='icon-remove'></i>";
+                echo "<div class='neg_2'><a href='#'>Өмнө үзсэн хичээл байхгүй байна</a> <i class='icon-remove'></i>";
                 }
             }
    
