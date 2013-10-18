@@ -98,7 +98,59 @@ class GradePage
                  {
                     echo '<div class="neg_2"><a href="#">Та энэ жил хичээл үзээгүй байна</a> <i class="icon-remove"></i></div>';
                  }
-    }    
+    }
+    
+    public static function DrawStudentMenu_prev()
+            {                
+            ?>
+            <div class="neg_2"><a href="#">Өмнө судалж байсан хичээлүүд</a> <i class="icon-plus"></i>
+                <?php
+                $query = Lesson::GetStudentLesson_prev();
+                $prev = 0;
+                $start = null;
+        if(mysqli_num_rows($query) > 0)
+            { 
+                while($result = $query->fetch_assoc())
+                    {
+                        $year = Decode::DecodeYear($result["LsnYear"]);
+                        if($prev != $result["LsnYear"])
+                            {
+                                if(isset($start))
+                                    {
+                                        $start.="</div>";
+                                    }
+                                    $start.= "<div class='neg_2 dotorhi_1'><a href='3'>".$year."</a> <i class='icon-plus'></i>";
+                            }
+                        $middle = "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnCd"]."</a></div>";
+                        
+                        $prev = $result["LsnYear"];
+                        $start.=$middle;
+                    }
+                    $start.="</div>";
+                    echo $start;
+                ?>
+            </div>            
+    <?php
+            }
+            else
+                {
+                echo "<div class='neg_2'><a href='#'>Та энэ жил хичээл сонгоогүи байна</a> <i class='icon-remove'></i>";
+                }
+            }
+   
+   Public static function DrawSubMenu()
+           {
+                ?>
+                   <div class="neg_2"><a href="#">Туслах</a> <i class="icon-plus"></i>
+                        <div class="neg_2 dotorhi_1"><a href="#">Оюутны гарын авлага</a>
+                        </div>
+                        <div class="neg_2 dotorhi_1"><a href="#">Дүгнэх журам үзэх</a>
+                        </div>
+                        <div class="neg_2 dotorhi_1"><a href="#">Хичээлийн хувиар үзэх</a>
+                        </div>
+                   </div>
+                <?php
+           }
             
 }
 

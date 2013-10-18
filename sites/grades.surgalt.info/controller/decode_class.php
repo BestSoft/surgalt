@@ -72,7 +72,7 @@ class Decode
                             $result["Year"] = "0000";
                             end:
                             }
-                     return $result;
+                     return $result["Season"]." ".$result["Year"];
                 }
     }
     

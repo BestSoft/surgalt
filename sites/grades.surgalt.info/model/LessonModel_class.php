@@ -38,6 +38,24 @@ class Lesson
                         return $query;
                         
             }
+    public static function GetStudentLesson_prev()
+            {
+                $user = User::getInstance();
+                $user_id = $user->getUsrID();
+                $user_type = $user->getUsrTpID();
+                if($user_type == 3)
+                    {
+                        $user_rlt = 1;
+                    }
+                    else 
+                        {
+                            $user_rlt = 2;
+                        }
+                $db = DataBase::getInstance();
+                $sql = "select a.LsnCd,a.LsnID,a.LsnYear from lesson a inner join userlesson b on a.LsnID = b.LsnID where b.UsrID = ".$user_id." and a.isAvailable = 0 and b.RltnID = ".$user_rlt." order by a.LsnYear";
+                $query = $db->query($sql);
+                return $query;
+            }            
 }
 
 ?>

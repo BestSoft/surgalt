@@ -62,7 +62,7 @@
             <div class="span3">
                 <?php 
                     include PATH_BASE . "/sites/".HOSTNAME."/controller/LessonController.php"; 
-                    DrawLeftMenu::DrawLeftMenu_Now();
+                    DrawLeftMenu::DrawLeftMenu_Now();                    
                 ?>
             </div>
             <div class="span8">
