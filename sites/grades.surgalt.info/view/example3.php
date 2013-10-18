@@ -20,13 +20,9 @@
         border-left-color: black;
         margin-right: 0px;
     }
-    .neg_1
-    {
-        padding-left: 5px;        
-    }
     .neg_2
     {
-        padding-left: 10px;
+        padding-left: 5px;
     }
     .neg_3
     {
@@ -40,92 +36,37 @@
     {
         text-decoration: underline;
         font-style: normal;
-        font-size: 20px;
+        font-size: 12px;
     }
     .container-fluid
     {
         margin-top: 100px;
     }
-    .row-fluid
-    {
-    }
-    .Menu_tree_form
-    {
-        margin-bottom: 0px;
-    }
     .table
     {
         margin-bottom: 0px;
+        border-radius: 0px 0px 0px 0px;
+    }
+    .row-fluid
+    [class*="span"]
+    {
+        margin-left: 0px;
+    }
+    .journal
+    {
+        margin-left: 20px;
     }
 </style>
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span2">
+            <div class="span3">
                 <?php 
-                        $ded_menu[0]["title"] = "Өмнө үзэж байсан хичээлүүд";
-                        $ded_menu[1]["title"] = "Одоо судалж буй хичээлүүд";
-                        $ded_menu[2]["title"] = "Туслах";
-                        $ded_menu[0]["url"] = "http://www.1.com";
-                        $ded_menu[1]["url"] = "http://www.2.com";
-                        $ded_menu[2]["url"] = "http://www.3.com";
-                        $dund_menu[0][0]["title"] = "CS200";
-                        $dund_menu[0][1]["title"] = "CS2001";
-                        $dund_menu[0][2]["title"] = "SE304";
-                        $dund_menu[0][0]["url"] = "#";
-                        $dund_menu[0][1]["url"] = "#";
-                        $dund_menu[0][2]["url"] = "#";
-                        $dund_menu[1][0]["title"] = "CS200";
-                        $dund_menu[1][1]["title"] = "CS2001";
-                        $dund_menu[1][2]["title"] = "SE304";
-                        $dund_menu[1][0]["url"] = "#";
-                        $dund_menu[1][1]["url"] = "#";
-                        $dund_menu[1][2]["url"] = "#";
-                        $dund_menu[1][0]["title"] = "CS200";
-                        $dund_menu[1][1]["title"] = "CS2001";
-                        $dund_menu[1][2]["title"] = "SE304";
-                        $dund_menu[1][0]["url"] = "#";
-                        $dund_menu[1][1]["url"] = "#";
-                        $dund_menu[1][2]["url"] = "#";
-                        $dood_menu[0][0][0]["title"] = "Lab";
-                        $dood_menu[0][0][0]["url"] = "#";    
-                        $dood_menu[0][0][1]["title"] = "Lekts";
-                        $dood_menu[0][0][1]["url"] = "#";        
-                        $dood_menu[0][0][2]["title"] = "Lekts";
-                        $dood_menu[0][0][2]["url"] = "#";
-                    
-                        function Menu_uusgeh($ded_menu,$dund_menu,$dood_menu)
-                    {
-                            $i = 0;
-                            $j = 0;
-                            $k = 0;
-                            echo "<div class='Menu_tree_form'>";
-                                while($i < sizeof($ded_menu))
-                                    {
-                                    echo "<div class='neg_2'>";
-                                    echo "<a class='ded_menu' href='".$ded_menu[$i]["url"]."'>".$ded_menu[$i]["title"]."</a> <i class='icon-plus'></i>";
-                                    while($j < sizeof($dund_menu))
-                                        {
-                                        echo "<div class='neg_2 dotorhi_1'>";
-                                            echo "<a class='dund_menu' href='".$dund_menu[$i][$j]["url"]."'>".$dund_menu[$i][$j]["title"]."</a> <i class='icon-plus'></i>";
-                                            while($k < sizeof($dood_menu))
-                                                {
-                                                echo "<div class='neg_2 dotorhi_1'>";
-                                                    echo "<a class='dood_menu' href='".$dood_menu[$i][$j][$k]["url"]."'>".$dood_menu[$i][$j][$k]["title"]."</a> ";
-                                                echo "</div>";
-                                                    $k++;
-                                                }
-                                        echo "</div>";
-                                            $j++;                        
-                                        }
-                                    echo "</div>";
-                                        $i++;
-                                    }
-                            echo "</div>";
-                    }
-                    Menu_uusgeh($ded_menu, $dund_menu, $dood_menu);
-                    ?>
+                    include PATH_BASE . "/sites/".HOSTNAME."/controller/LessonController.php"; 
+                    DrawLeftMenu::DrawLeftMenu_Now();
+                ?>
             </div>
-            <div class="span9">
+            <div class="span8">
+            <div class="journal">
                 <?php 
         function Global_1()
     {
@@ -222,7 +163,8 @@
             echo "</div>";                        
     }      
     Global_1();
-    ?>
+    ?>    
+            </div>
             </div>
         </div>
     </div>
