@@ -53,51 +53,45 @@ class GradePage
   }
   public static function DrawTeacherMenu_now()
     {
-        $query = Lesson::GetTeacherLesson();
-        $start = null;
-        $middle = null;
-        $prev = 0;
-        $prev_1 = 0;
-        if(mysqli_num_rows($query) > 0)
-            {        
-        ?>
-        <div class="neg_2"><a href="#">Одоо зааж буй хичээлүүд</a> <i class='icon-plus'></i>
-        <?php
-            while($result = $query->fetch_assoc())
-                {                    
-                    if($prev != $result["LsnID"])
-                        {
-                            if(isset($start))
-                                {
-                                    $start.="</div>";
-                                }                                                    
-                        $start.= "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnCd"]."</a> <i class='icon-plus'></i>";
-                        }
-                        if($prev_1 != $result["LsnTpID"])
+          $query = Lesson::GetTeacherLesson();
+          $start = null;
+          $i = 0;
+          $prev_LsnID = 0;
+          $prev_LsnTpID = 0;
+          if(mysqli_num_rows($query) > 0)
+              {
+              echo "<div class='neg_2'><a href='#'>Одоо зааж буй хичээлүүд</a> <i class='icon-plus'></i>";
+                  while($result = mysqli_fetch_assoc($query))
+                      {
+                        if($prev_LsnID != $result["LsnID"])
                             {
-                                if(isset($middle))
+                                if(isset($start))
                                     {
-                                        $middle.="</div>";
+                                        $start.="</div>";
                                     }
-                        $middle.= "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnNm"]."</a> <i class='icon-plus'></i>";
+                                    $start.= "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnCd"]."</a> <i class='icon-plus'></i>";
+                            }
+                        if($prev_LsnTpID != $result["LsnTpID"])
+                            {
+                                if($i != 0)
+                                    {
+                                        $start.="</div>";
+                                    }
+                                    $start.= "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnNm"]."</a> <i class='icon-plus'></i>";
                             }                        
-                    $middle_1 = "<div class='neg_2 dotorhi_1'><a href='#'>".  Decode::DecodePar($result["LsnTm"])."</a></div>";
-                    
-                    $start.= $middle.$middle_1;
-                    $middle = "";
-                    $prev = $result["LsnID"];
-                    $prev_1 = $result["LsnTpID"];
-                }
-                echo $start."</div>";
-        ?>
-        </div>
-                    
-        <?php
-            }
-             else 
-                 {
-                    echo '<div class="neg_2"><a href="#">Та энэ жил хичээл үзээгүй байна</a> <i class="icon-remove"></i></div>';
-                 }
+                        $middle = "<div class='neg_2 dotorhi_1'><a href='#'>".Decode::DecodePar($result["LsnTm"])."</a></div>";
+                        $start.=$middle;
+                        $prev_LsnID = $result["LsnID"];
+                        $prev_LsnTpID = $result["LsnTpID"];
+                        $i++;
+                      }
+                      echo $start."</div></div>";
+              echo "</div>";
+              }
+          else
+              {
+                echo "<div class='neg_2'><a href='#'>Та энэ семистер хичээл заагаагүй байна</a> <i class='icon-remove'></div>";
+              }
     }
     
     public static function DrawStudentMenu_prev()
@@ -132,11 +126,46 @@ class GradePage
     <?php
             }
             else
-                {
-                echo "<div class='neg_2'><a href='#'>Өмнө үзсэн хичээл байхгүй байна</a> <i class='icon-remove'></i>";
+                {?>
+                <div class='neg_2'><a href='#'>Өмнө үзсэн хичээл байхгүй байна</a> <i class='icon-remove'></i></div><?php 
                 }
             }
-   
+            
+   public static function DrawTeacherMenu_prev()   
+           {
+                $query = Lesson::GetTeacherLesson_prev();
+                if(mysqli_num_rows($query) > 0)
+                    {
+                $start = null;
+                $prev = 0;
+                ?>
+                    <div class="neg_2"><a href="#">Өмнө зааж байсан хичээлүүд</a> <i class="icon-plus"></i>
+                <?php 
+                while($result = mysqli_fetch_assoc($query))
+                    {
+                        if($prev != $result["LsnYear"])
+                            {                                
+                                if(isset($start))
+                                    {
+                                        $start .= "</div>";
+                                    }                    
+                                    $start.= '<div class="neg_2 dotorhi_1"><a href="#">'.  Decode::DecodeYear($result["LsnYear"]).'</a><i class="icon-plus"></i>';
+                            }                
+                            $middle = "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnCd"]."</a></div>";
+                            $start.= $middle;
+                            $prev = $result["LsnYear"];
+                    }
+                    echo $start.="</div>";
+                    ?>
+                        </div>
+                    <?php 
+                    }
+                    else
+                        {
+                        ?><div class='neg_2'><a href='#'>Танд өмнө зааж байсан хичээл алга</a> <i class='icon-remove'></i></div><?php
+                        }
+           }
+           
    Public static function DrawSubMenu()
            {
                 ?>
