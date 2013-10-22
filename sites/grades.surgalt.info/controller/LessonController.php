@@ -28,7 +28,7 @@
                                 {
                                     GradePage::DrawStudentMenu_now();
                                     GradePage::DrawStudentMenu_prev();
-                                    GradePage::DrawSubMenu();
+                                    GradePage::DrawSubMenu();                                    
                                 }
                                 if($user_perm == 2 || $user_perm == 5)
                                 {
