@@ -44,7 +44,6 @@
     }
     .table
     {
-        margin-bottom: 0px;
         border-radius: 0px 0px 0px 0px;
     }
     .row-fluid
@@ -66,7 +65,16 @@
                 ?>
             </div>
             <div class="span8">
-            <div class="journal">
+                    <?php         
+                    if(isset($_GET["lesson"]) && isset($_GET["type"]))
+                        {                    
+                            include PATH_BASE . '/sites/'.HOSTNAME.'/controller/JournalController.php';
+                            DrawJournal::DrawJournalStudent_min();
+                        }
+                        else
+                            {
+                            ?>
+                <div class="journal">
                 <?php 
         function Global_1()
     {
@@ -165,6 +173,9 @@
     Global_1();
     ?>    
             </div>
+                <?php
+                            }
+                    ?>
             </div>
         </div>
     </div>

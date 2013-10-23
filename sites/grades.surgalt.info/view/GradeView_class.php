@@ -33,7 +33,7 @@ class GradePage
                                 }  
                                 if(!in_array($result["LsnTpID"], $davhardal))
                                 {
-                                    $middle = "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnNm"]."</a></div>";                                               
+                                    $middle = "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."'>".$result["LsnNm"]."</a></div>";                                               
                                     $davhardal[] = $result["LsnTpID"];                            
                                     $start = $start.$middle;
                                 }

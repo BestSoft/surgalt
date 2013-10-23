@@ -8,12 +8,18 @@
 class Lesson
 {
     private static $instance;
+    private static $user_id;
     private $UsrID;
     private $UsrCd;
     private $UsrTpID;   
     private $errMsg;
     private $db;    
     
+    function __construct()
+    {
+        $user = User::getInstance();
+        Lesson::$user_id = $user->getUsrID();
+    }
     
     function CheckUserPerm() //Багшийн болон оюутны хичээл мөн эсэх шалгадаг функц 
     {
@@ -75,7 +81,21 @@ class Lesson
                     a.RltnID = ".$user_rlt." and a.UsrID = ".$user_id." and b.isAvailable = 0 order by b.LsnYear";
                 $query = $db->query($sql);
                 return $query;
-            }           
+            }
+    public static function GetStudent_grade_min($lesson,$type)
+            {
+                    $lesson_type_id = $type;
+                    $lesson_id = $lesson;
+                    $user = User::getInstance();
+                    $user_id = $user->getUsrID();
+                    $db = DataBase::getInstance();
+                    $sql = "select a.Week,c.TpcNm,a.SelfPnt,d.Pnt from lessoncontent a inner join 
+            lessoncontenttopic b inner join topic c inner join homework d inner join lesson e on 
+            a.LsnCntID = b.LsnCntID and b.TpcID = c.TpcID and a.LsnCntID = d.LsnCntID and e.LsnID = a.LsnID
+            where d.StdID = ".$user_id." and a.LsnTpID = ".$lesson_type_id." and a.LsnID = ".$lesson_id." and e.isAvailable = 1 order by a.Week";                    
+                    $query = $db->query($sql);
+                    return $query;
+            }
 }
 
 ?>
