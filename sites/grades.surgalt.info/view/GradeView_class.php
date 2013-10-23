@@ -18,7 +18,7 @@ class GradePage
                 $davhardal = array();
                 $start = null;?>
                 <div class="neg_2">
-                    <a href="#">Одоо судалж буй хичээлүүд</a> <i class="icon-plus"></i>
+                    <a href="?host=<?php echo HOSTNAME ?>&action=1">Одоо судалж буй хичээлүүд</a> <i class="icon-plus"></i>
                 <?php 
                 while($result = $query->fetch_assoc())
                     {
@@ -29,11 +29,11 @@ class GradePage
                                             $start = $start."</div>"; 
                                             $davhardal = array();
                                        }      
-                                       $start = $start."<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnCd"]."</a> <i class='icon-plus'></i>";
+                                       $start = $start."<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."'>".$result["LsnCd"]."</a> <i class='icon-plus'></i>";
                                 }  
                                 if(!in_array($result["LsnTpID"], $davhardal))
                                 {
-                                    $middle = "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."'>".$result["LsnNm"]."</a></div>";                                               
+                                    $middle = "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."&isa=".$result["isAvailable"]."'>".$result["LsnNm"]."</a></div>";                                               
                                     $davhardal[] = $result["LsnTpID"];                            
                                     $start = $start.$middle;
                                 }
@@ -101,7 +101,7 @@ class GradePage
                 $start = null;
         if(mysqli_num_rows($query) > 0)
             { ?>
-            <div class="neg_2"><a href="#">Өмнө судалж байсан хичээлүүд</a> <i class="icon-plus"></i>
+            <div class="neg_2"><a href="?host=<?php echo HOSTNAME ?>&action=2">Өмнө судалж байсан хичээлүүд</a> <i class="icon-plus"></i>
                 <?php
                 while($result = $query->fetch_assoc())
                     {
