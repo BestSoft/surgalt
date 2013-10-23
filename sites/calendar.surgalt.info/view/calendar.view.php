@@ -1,6 +1,3 @@
-    <?php
-    include 'phpfunctions.php';
-    ?>
 <?php
 $monthNames = Array("Нэгдүгээр сар", 
                     "Хоёрдугаар сар", 
@@ -37,8 +34,8 @@ if ($next_month == 13 ) {
     $next_year = $cYear + 1;
 }
 ?>
-<a href="<?php echo BASE_URL."?host=calendar.surgalt.info" . "&month=". $prev_month . "&year=" . $prev_year; ?>" style="color:#FFFFFF">Previous</a>
-<a href="<?php echo BASE_URL."?host=calendar.surgalt.info" . "&month=". $next_month . "&year=" . $next_year; ?>" style="color:#FFFFFF">Next</a> 
+<a class="btn" href="<?php echo BASE_URL."?host=calendar.surgalt.info" . "&month=". $prev_month . "&year=" . $prev_year; ?>" style="color:#FFFFFF">Өмнөх сар</a>
+<a class="btn" href="<?php echo BASE_URL."?host=calendar.surgalt.info" . "&month=". $next_month . "&year=" . $next_year; ?>" style="color:#FFFFFF">Дараагийн сар</a> 
 
 <table width="100%" border="0" cellpadding="2" cellspacing="2" class="table table-bordered">
  
@@ -47,13 +44,13 @@ if ($next_month == 13 ) {
 <td colspan="7" bgcolor="#999999" style="color:#FFFFFF"><strong><?php echo $monthNames[$cMonth-1].' '.$cYear; ?></strong></td>
 </tr>
 <tr>
-<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>S</strong></td>
-<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>M</strong></td>
-<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>T</strong></td>
-<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>W</strong></td>
-<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>T</strong></td>
-<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>F</strong></td>
-<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>S</strong></td>
+    <td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Ням&nbsp;&nbsp;&nbsp;</strong></td>
+<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Даваа&nbsp;</strong></td>
+<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Мягмар</strong></td>
+<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Лхагва</strong></td>
+<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Пүрэв</strong></td>
+<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Баасан</strong></td>
+<td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Бямба</strong></td>
 </tr>
 <?php 
 $link = BASE_URL;
@@ -64,20 +61,19 @@ $startday = $thismonth['wday'];
 for ($i=0; $i<($maxday+$startday); $i++) {
     if(($i % 7) == 0 ) echo "<tr>";
     if($i < $startday) echo "<td></td>";
-    else echo "<td align='center' valign='middle' height='50px'><a class='mymodal' link='".$link."' day='".($i - $startday + 1)."' href='#'>". ($i - $startday + 1) . "</a></td>";
+    else echo "<td align='center' valign='middle' height='50px'><a class='mymodal' link='".$link."' day='".($i - $startday + 1)."' href='#'><p style='font-size: xx-large;'>". ($i - $startday + 1) . "</p></a></td>";
     if(($i % 7) == 6 ) echo "</tr>";
 }
 ?>
 </table>
-<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
+    <h3 id="myModalLabel">Шинэ үйл ажиллагаа нэмэх</h3>
   </div>
   <div class="modal-body">
     <p>
-        <?php include 'details.php';?>
+        <?php include 'event.html.php';?>
     </p>
   </div>
   <div class="modal-footer">
@@ -85,4 +81,4 @@ for ($i=0; $i<($maxday+$startday); $i++) {
     <button class="btn btn-primary">Хадгалах</button>
   </div>
 </div>
-<a href='<?php echo BASE_URL;?>/sites/calendar.surgalt.info/details.php'>Details</a>
+    
