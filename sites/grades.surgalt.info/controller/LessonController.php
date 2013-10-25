@@ -3,7 +3,7 @@
     
     Class DrawLeftMenu
 {
-        public static function DrawLeftMenu_Now()
+        public static function DrawLeftMenu_now()
                 {
                     ?>
                     <div class="Menu_tree_form">

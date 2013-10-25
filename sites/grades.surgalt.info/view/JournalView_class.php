@@ -195,6 +195,68 @@ class Journal
                                     echo "<div class='container'><h4>Одоогоор таньд үзэж буй хичээл алга байна</h4></div>";
                                 }
                } 
+               
+               public static function DrawStudentJournal_mid_prev($year)
+                       {                            
+                            $year_id = $year;
+                            $query = Lesson::GetStudentLesson_prev_grade_mid($year_id);
+                            $total = 0;
+                            $total_crd = 0;
+                            $total_chan = 0;
+                            if(mysqli_num_rows($query) > 0)
+                                {
+                                    ?>
+                                        <table class="table table-bordered">
+                                            <tr class="Table_header">
+                                                <td>Хичээлийн Код</td>
+                                                <td>Хичээлийн Нэр</td>
+                                                <td>Кредит</td>
+                                                <td>70 Оноо</td>
+                                                <td>30 Оноо</td>
+                                                <td>Нийт оноо</td>
+                                                <td>Үсгэн үнэлгээ</td>
+                                                <td>Чанрын оноо</td>
+                                            </tr>
+                                        <?php 
+                                            while($result = mysqli_fetch_assoc($query))
+                                                {                                            
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $result["LsnCd"]; ?></td>
+                                                <td><?php echo $result["LsnNm"]; ?></td>
+                                                <td><?php echo $result["LsnCrd"]; ?></td>
+                                                <td><?php echo $result["Point70"]; ?></td>
+                                                <td><?php echo $result["Point30"]; ?></td>
+                                                <td><?php echo $total = $result["Point70"] + $result["Point30"]; ?></td>
+                                                <td><?php $dun = Decode::GetRealGrade($total);
+                                                            echo $dun["useg"];
+                                                ?></td>
+                                                <td><?php echo $dun["sym"]; ?></td>
+                                            </tr>
+                                        <?php 
+                                        $total_crd+=$result["LsnCrd"];
+                                        $total_chan+=$result["LsnCrd"] * $dun["number"];
+                                                }
+                                        ?>
+                                            <tr>
+                                                <td></td>
+                                                <td>Нийт кредит</td>
+                                                <td><?php echo $total_crd; ?></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>Үнэлгээний Голч:</td>
+                                                <td><?php echo $gpa_year = $total_chan/$total_crd; ?></td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    <?php 
+                                }
+                                else
+                                    {
+                                        echo "<div class='container'><h4>Одоогоор таньд үзэж буй хичээл алга байна</h4></div>";
+                                    }
+                       }
     
 }
 

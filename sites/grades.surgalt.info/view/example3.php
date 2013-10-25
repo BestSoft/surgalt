@@ -61,10 +61,11 @@
             <div class="span3">
                 <?php 
                     include PATH_BASE . "/sites/".HOSTNAME."/controller/LessonController.php"; 
-                    DrawLeftMenu::DrawLeftMenu_Now();                    
+                    DrawLeftMenu::DrawLeftMenu_now();                    
                 ?>
             </div>
             <div class="span8">
+                <div class="container">
                     <?php         
                     include PATH_BASE . '/sites/'.HOSTNAME.'/controller/JournalController.php';
                     if(isset($_GET["lesson"]) && isset($_GET["type"]))
@@ -84,8 +85,11 @@
                                     if($_GET["action"] == 2)
                                     DrawJournal::DrawJournalStudent_max_cont_prev();
                                 }
+                            if(isset($_GET["year"]))
+                                    DrawJournal::DrawJournalStudent_mid_cont_prev();
                             }
                     ?>
+                </div>
             </div>
         </div>
     </div>

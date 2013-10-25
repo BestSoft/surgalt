@@ -112,9 +112,9 @@ class GradePage
                                     {
                                         $start.="</div>";
                                     }
-                                    $start.= "<div class='neg_2 dotorhi_1'><a href='3'>".$year."</a> <i class='icon-plus'></i>";
+                                    $start.= "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&year=".$result["LsnYear"]."'>".$year."</a> <i class='icon-plus'></i>";
                             }
-                        $middle = "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnCd"]."</a></div>";
+                        $middle = "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&year=".$result["LsnYear"]."'>".$result["LsnCd"]."</a></div>";
                         
                         $prev = $result["LsnYear"];
                         $start.=$middle;
@@ -170,9 +170,9 @@ class GradePage
            {
                 ?>
                    <div class="neg_2"><a href="#">Туслах</a> <i class="icon-plus"></i>
-                        <div class="neg_2 dotorhi_1"><a href="#">Оюутны гарын авлага</a>
+                        <div class="neg_2 dotorhi_1"><a href="http://www.unimis.edu.mn/student/oyutan.pdf">Оюутны гарын авлага</a>
                         </div>
-                        <div class="neg_2 dotorhi_1"><a href="#">Дүгнэх журам үзэх</a>
+                        <div class="neg_2 dotorhi_1"><a href="http://must.edu.mn/beta3/menu136">Дүгнэх журам үзэх</a>
                         </div>
                         <div class="neg_2 dotorhi_1"><a href="#">Хичээлийн хувиар үзэх</a>
                         </div>

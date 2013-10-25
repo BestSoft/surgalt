@@ -145,6 +145,19 @@ a.LsnID = ".$lesson_id." and b.StdID = ".$user_id." order by a.LsnTpID";
                             $query = $db->query($sql);
                             return $query;
             }
+    public static function GetStudentLesson_prev_grade_mid($year)
+            {
+                            $db = DataBase::getInstance();
+                            $user = User::getInstance();
+                            $user_id = $user->getUsrID();
+                            $year_id = $year;
+                            $sql = "select a.Point70,a.Point30,b.LsnNm,b.LsnCd,b.LsnCrd from userlesson a inner join 
+                                lesson b on a.LsnID = b.LsnID 
+                                where a.UsrID = ".$user_id." and a.RltnID = 2 and 
+                                b.LsnYear = '".$year_id."' and b.isAvailable = 0";
+                            $query = $db->query($sql);
+                            return $query;
+            }
 }
 
 ?>

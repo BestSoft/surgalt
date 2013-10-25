@@ -5,7 +5,7 @@ include PATH_BASE . '/sites/'.HOSTNAME.'/view/JournalView_class.php';
     
     class DrawJournal
 {
-            Public static function DrawJournalStudent_min_cont()
+            Public static function DrawJournalStudent_min_cont()// Одоо үзэж буй хичээлийн хичээлийн төрөл сонгох үе
                     {
                         ?>
                             <div class="journal">
@@ -18,7 +18,7 @@ include PATH_BASE . '/sites/'.HOSTNAME.'/view/JournalView_class.php';
                             </div>
                         <?php
                     }
-            Public static function DrawJournalStudent_mid_cont()
+            Public static function DrawJournalStudent_mid_cont()// Одоо үзэж буй хичээлийн хичээл сонгох үе
                     {
                         ?>
                             <div class="journal">
@@ -29,7 +29,7 @@ include PATH_BASE . '/sites/'.HOSTNAME.'/view/JournalView_class.php';
                             </div>
                         <?php
                     }
-            Public static function DrawJournalStudent_max_cont()
+            Public static function DrawJournalStudent_max_cont()// Одоо үзэж буй хичээлийн дэд мэнү ээр сонгох үе
                     {
                         ?>
                             <div class="journal">
@@ -39,7 +39,7 @@ include PATH_BASE . '/sites/'.HOSTNAME.'/view/JournalView_class.php';
                             </div>
                         <?php 
                     }
-            Public static function DrawJournalStudent_max_cont_prev()
+            Public static function DrawJournalStudent_max_cont_prev()// Өмнө судалж байсан хичээлийн дэд мэнү ээр сонгох үеийн
                     {
                         ?>
                             <div class="journal">
@@ -48,6 +48,17 @@ include PATH_BASE . '/sites/'.HOSTNAME.'/view/JournalView_class.php';
                                 ?>
                             </div>
                         <?php
+                    }
+            public static function DrawJournalStudent_mid_cont_prev() // Өмнө судалж байсан хичээлийн улирлаар сонгох үеийн
+                    {
+                        ?>
+                            <div class="journal">
+                                <?php 
+                                $year = $_GET["year"];
+                                    Journal::DrawStudentJournal_mid_prev($year);
+                                ?>
+                            </div>
+                        <?php 
                     }
 }
 
