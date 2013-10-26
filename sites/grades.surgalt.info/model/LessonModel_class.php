@@ -158,6 +158,31 @@ a.LsnID = ".$lesson_id." and b.StdID = ".$user_id." order by a.LsnTpID";
                             $query = $db->query($sql);
                             return $query;
             }
+     public static function GetTeacherLesson_now_grade_min_1($lsntm,$lsnid)
+             {
+                            $lesson_id = $lsnid;
+                            $db = DataBase::getInstance();
+                            $user = User::getInstance();
+                            $teacher_id = $user->getUsrID();
+                            $lesson_time = $lsntm;
+                            $sql = "select c.UsrCd,c.UsrNm from studenttimetable a inner join lesson b inner join 
+                                    user c on a.StdID = c.UsrID and b.LsnID = a.LsnID
+                                    where a.LsnTm = ".$lesson_time." and a.LsnID = ".$lesson_id." and a.TchID = ".$teacher_id." and b.isAvailable = 1";
+                            $query = $db->query($sql);
+                            return $query;
+             }
+     public static function GetTeacherLesson_now_grade_min_2($lsnid,$type)
+             {
+                            $lesson_id = $lsnid;
+                            $db = DataBase::getInstance();
+                            $user = User::getInstance();
+                            $teacher_id = $user->getUsrID();
+                            $sql = "select a.LsnID,a.Week,a.LsnTpID,c.LsnNm,b.StdID from 
+lessoncontent a inner join studenttimetable b inner join lessontype c
+on a.LsnID = b.LsnID and c.LsnID = a.LsnTpID 
+where b.TchID = 1 and b.LsnTm = 132 and a.LsnID = 1 and a.LsnTpID = 1 order by a.Week,b.StdID";
+                            
+             }
 }
 
 ?>
