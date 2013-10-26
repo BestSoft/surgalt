@@ -177,10 +177,13 @@ a.LsnID = ".$lesson_id." and b.StdID = ".$user_id." order by a.LsnTpID";
                             $db = DataBase::getInstance();
                             $user = User::getInstance();
                             $teacher_id = $user->getUsrID();
-                            $sql = "select a.LsnID,a.Week,a.LsnTpID,c.LsnNm,b.StdID from 
-lessoncontent a inner join studenttimetable b inner join lessontype c
-on a.LsnID = b.LsnID and c.LsnID = a.LsnTpID 
-where b.TchID = 1 and b.LsnTm = 132 and a.LsnID = 1 and a.LsnTpID = 1 order by a.Week,b.StdID";
+                            $sql = "SELECT a.LsnID, a.Week, a.LsnTpID, c.LsnNm, b.StdID";
+                            $sql .= " FROM studenttimetable a";
+                            $sql .= " LEFT JOIN lessoncontent b ON a.LsnID = b.LsnID AND a.LsnTpID = b.LsnTpID";
+                            $sql .= " LEFT JOIN lessontype c ON c.LsnID = a.LsnTpID"; 
+                            $sql .= " LEFT JOIN homework d ON b.LsnCntID = d.LsnCntID AND a.StdID = d.StdID"; 
+                            $sql .= " WHERE a.TchID = 1 AND a.LsnTm = 132 AND a.LsnID = 1 AND a.LsnTpID = 1";
+                            $sql .= " ORDER BY a.Week, b.StdID";
                             
              }
 }
