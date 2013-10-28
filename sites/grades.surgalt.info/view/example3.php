@@ -38,7 +38,7 @@
         font-style: normal;
         font-size: 12px;
     }
-    .container-fluid
+    .Mystyle_1
     {
         margin-top: 100px;
     }
@@ -56,28 +56,26 @@
         margin-left: 20px;
     }
 </style>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span3">
+<div class="Mystyle_1">
+    <div class="row-fluid">
+        <div class="span12">            
+            <div class="row-fuild">
+                <div class="span3">
                 <?php 
                     include PATH_BASE . "/sites/".HOSTNAME."/controller/LessonController.php"; 
                     DrawLeftMenu::DrawLeftMenu_now();                    
                 ?>
-            </div>
+                </div>            
             <div class="span8">
                 <div class="container">
                     <?php         
                     include PATH_BASE . '/sites/'.HOSTNAME.'/controller/JournalController.php';
-                    if(isset($_GET["lesson"]) && isset($_GET["type"]))
+                    if(isset($_GET["lesson"]) && isset($_GET["type"]) && isset($_GET["isav"]) && count($_GET) == 4)
                         {                                                
                             DrawJournal::DrawJournalStudent_min_cont();
                         }
                         else
-                            {
-                            if(isset($_GET["lesson"]))
-                                {
-                                    DrawJournal::DrawJournalStudent_mid_cont();
-                                }
+                            {                               
                             if(isset($_GET["action"]))
                                 {
                                     if($_GET["action"] == 1)
@@ -87,10 +85,27 @@
                                 }
                             if(isset($_GET["year"]))
                                     DrawJournal::DrawJournalStudent_mid_cont_prev();
+                            if(isset($_GET["lesson"]) && isset($_GET["type"]) && isset($_GET["par"]))
+                                    DrawJournal::DrawJournalTeacher_min_cont_now ();
+                            if(isset($_GET["lesson"]) && count($_GET) == 2)                               
+                                    DrawJournal::DrawJournalStudent_mid_cont(); 
+                            if(isset($_GET["host"]) && count($_GET))
+                                {
+                                    if($user->getUsrTpID() == 4)
+                                        {
+                                            DrawJournal::DrawJournalStudent_max_cont();
+                                        }
+                                        else
+                                            {
+                                                
+                                            }
+                                }
                             }
                     ?>
+                </div>
                 </div>
             </div>
         </div>
     </div>
-<script src="js/jquery 1.10.2.js"></script>
+</div>
+

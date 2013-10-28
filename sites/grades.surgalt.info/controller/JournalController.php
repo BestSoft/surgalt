@@ -60,6 +60,19 @@ include PATH_BASE . '/sites/'.HOSTNAME.'/view/JournalView_class.php';
                             </div>
                         <?php 
                     }
+            public static function DrawJournalTeacher_min_cont_now()
+                    {
+                        ?>
+                            <div class='journal'>
+                                 <?php 
+                                     $lsntm = $_GET["par"];
+                                     $lsntp = $_GET["type"];
+                                     $lesson = $_GET["lesson"];
+                                     Journal::DrawTeacherJournal_now_min($lesson, $lsntp, $lsntm);
+                                 ?>
+                            </div>
+                        <?php
+                    }
 }
 
 

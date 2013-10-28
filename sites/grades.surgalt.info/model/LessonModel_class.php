@@ -158,32 +158,23 @@ a.LsnID = ".$lesson_id." and b.StdID = ".$user_id." order by a.LsnTpID";
                             $query = $db->query($sql);
                             return $query;
             }
-     public static function GetTeacherLesson_now_grade_min_1($lsntm,$lsnid)
+     public static function GetTeacherLesson_now_grade_min_1($lsnid,$type,$lsntm)
              {
                             $lesson_id = $lsnid;
                             $db = DataBase::getInstance();
                             $user = User::getInstance();
                             $teacher_id = $user->getUsrID();
-                            $lesson_time = $lsntm;
-                            $sql = "select c.UsrCd,c.UsrNm from studenttimetable a inner join lesson b inner join 
-                                    user c on a.StdID = c.UsrID and b.LsnID = a.LsnID
-                                    where a.LsnTm = ".$lesson_time." and a.LsnID = ".$lesson_id." and a.TchID = ".$teacher_id." and b.isAvailable = 1";
+                            $type_id = $type;
+                            $lsntm_id = $lsntm;
+                            $sql = "select a.LsnID, b.Week, a.LsnTpID, c.LsnNm, a.StdID,d.Pnt,e.UsrNm,e.UsrCd,b.LsnCntID from (studenttimetable a 
+                                    left join lessoncontent b on a.LsnID = b.LsnID and a.LsnTpID = b.LsnTpID
+                                    left join lessontype c on c.LsnID = a.LsnTpID 
+                                    left join homework d on b.LsnCntID = d.LsnCntID and a.StdID = d.StdID)
+                                    inner join user e on e.UsrID = a.StdID
+                                    where a.TchID = ".$teacher_id." and a.LsnTm = ".$lsntm_id." and a.LsnID = ".$lesson_id." and a.LsnTpID = ".$type_id." 
+                                    order by b.Week,a.StdID";
                             $query = $db->query($sql);
                             return $query;
-             }
-     public static function GetTeacherLesson_now_grade_min_2($lsnid,$type)
-             {
-                            $lesson_id = $lsnid;
-                            $db = DataBase::getInstance();
-                            $user = User::getInstance();
-                            $teacher_id = $user->getUsrID();
-                            $sql = "SELECT a.LsnID, a.Week, a.LsnTpID, c.LsnNm, b.StdID";
-                            $sql .= " FROM studenttimetable a";
-                            $sql .= " LEFT JOIN lessoncontent b ON a.LsnID = b.LsnID AND a.LsnTpID = b.LsnTpID";
-                            $sql .= " LEFT JOIN lessontype c ON c.LsnID = a.LsnTpID"; 
-                            $sql .= " LEFT JOIN homework d ON b.LsnCntID = d.LsnCntID AND a.StdID = d.StdID"; 
-                            $sql .= " WHERE a.TchID = 1 AND a.LsnTm = 132 AND a.LsnID = 1 AND a.LsnTpID = 1";
-                            $sql .= " ORDER BY a.Week, b.StdID";
                             
              }
 }
