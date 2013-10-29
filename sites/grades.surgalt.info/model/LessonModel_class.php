@@ -158,6 +158,25 @@ a.LsnID = ".$lesson_id." and b.StdID = ".$user_id." order by a.LsnTpID";
                             $query = $db->query($sql);
                             return $query;
             }
+     public static function GetTeacherLesson_now_grade_min_1($lsnid,$type,$lsntm)
+             {
+                            $lesson_id = $lsnid;
+                            $db = DataBase::getInstance();
+                            $user = User::getInstance();
+                            $teacher_id = $user->getUsrID();
+                            $type_id = $type;
+                            $lsntm_id = $lsntm;
+                            $sql = "select a.LsnID, b.Week, a.LsnTpID, c.LsnNm, a.StdID,d.Pnt,e.UsrNm,e.UsrCd,b.LsnCntID from (studenttimetable a 
+                                    left join lessoncontent b on a.LsnID = b.LsnID and a.LsnTpID = b.LsnTpID
+                                    left join lessontype c on c.LsnID = a.LsnTpID 
+                                    left join homework d on b.LsnCntID = d.LsnCntID and a.StdID = d.StdID)
+                                    inner join user e on e.UsrID = a.StdID
+                                    where a.TchID = ".$teacher_id." and a.LsnTm = ".$lsntm_id." and a.LsnID = ".$lesson_id." and a.LsnTpID = ".$type_id." 
+                                    order by b.Week,a.StdID";
+                            $query = $db->query($sql);
+                            return $query;
+                            
+             }
 }
 
 ?>

@@ -14,6 +14,7 @@
                         {
                             GradePage::DrawTeacherMenu_now();
                             GradePage::DrawTeacherMenu_prev();
+                            GradePage::DrawSubMenuReport();
                             GradePage::DrawSubMenu();
                         }
                         else
@@ -22,6 +23,7 @@
                                 {
                                     GradePage::DrawTeacherMenu_now();
                                     GradePage::DrawTeacherMenu_prev();
+                                    GradePage::DrawSubMenuReport();
                                     GradePage::DrawSubMenu();
                                 }
                                 if($user_perm == 4)

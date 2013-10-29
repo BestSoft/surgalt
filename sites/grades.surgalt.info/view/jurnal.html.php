@@ -8,10 +8,12 @@
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/css/style.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/bootstrap-editable/css/bootstrap-editable.css" />
         <script src="<?php echo BASE_URL; ?>/js/jquery.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/script.js"></script>
         <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/script.js"></script>
+        <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/bootstrap-editable/js/bootstrap-editable.js"></script>
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
