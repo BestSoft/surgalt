@@ -12,13 +12,16 @@
         <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/jquery.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/script.js"></script>
-        <script src="<?php echo BASE_URL; ?>/js/script.js"></script>
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
         <main class="bs-masthead" id="content" role="main" style="margin-top: 0%; background-color: #eee;">
-            <div class="container" style="height: 494px; margin-top: 7%;">
-                <?php include 'calendar.view.php'; ?>
+            <div class="row-fluid" style="height: 494px; margin-top: 7%;">
+                <div class="span11" style="margin-left: 50px;">
+                    <?php 
+                    include PATH_BASE."/sites/".HOSTNAME."/controller/calendarCon.php";
+                    CalendarControllerClass::checkAction();?>
+                </div>
             </div>
         </main>
         <div style="background-color: #eee;">
