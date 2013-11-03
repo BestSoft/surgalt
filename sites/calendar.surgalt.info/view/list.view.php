@@ -21,13 +21,27 @@ class listViewEvent {
                         Жагсаалтууд
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        Гарчиг
+                    </td>
+                    <td>
+                        Эхлэх огноо
+                    </td>
+                <tr>
             <?php
             While ($result = $query->fetch_assoc()) {
-                echo "<tr>";
-                Echo "<td>Гүйцэтгэл</td>";
-                Echo "<td>" . $result['Title'] . "</td>";
-                Echo "<td>Гүйцэтгэл</td>";
-                echo "</tr>";
+                ?>
+                <tr>
+                    <td>
+                        <input type="checkbox" id='checkinput'>
+                        <a id="checktitle"><?php echo $result['Title'] ?></a>
+                    </td>
+                    <td>
+                        <a id='checkdate'><?php echo $result['StrtDt']?></a>
+                    </td>
+                </tr>
+                    <?php
             }
             ?>
             </table>

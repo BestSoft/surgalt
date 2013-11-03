@@ -78,7 +78,7 @@ class Calendar {
         $user = User::getInstance();
 
         $UserID = $user->getUsrID();
-        $sql = "select * from calendar where InsID = " . $UserID;
+        $sql = "select * from calendar where InsID = 010000000" . $UserID;
         $query = $db->query($sql);
         echo $db->error;
         return $query;

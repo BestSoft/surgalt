@@ -58,13 +58,55 @@ if ($next_month == 13) {
             $maxday = date("t", $timestamp);
             $thismonth = getdate($timestamp);
             $startday = $thismonth['wday'];
+            $nMonth = $cMonth+1;
+            $db=  DataBase::getInstance();
+            $user = User::getInstance();
+            $sql="select StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '".$cYear."/".$cMonth."/01' and '".$cYear."/".$nMonth."/01') or (EndDt between '".$cYear."/".$cMonth."/01' and '".$cYear."/".$nMonth."/01')) and TpUsrID =".$user->getUsrID();;
+            $query=$db->query($sql);
+            include PATH_BASE."/sites/".HOSTNAME."/controller/calendarDecode.php";
+            $minii=array();
+            while ($result = mysqli_fetch_assoc($query)){
+                $minii[] = $result;
+            }
+            
             for ($i = 0; $i < ($maxday + $startday); $i++) {
                 if (($i % 7) == 0)
                     echo "<tr>";
                 if ($i < $startday)
                     echo "<td></td>";
-                else
-                    echo "<td align='center' valign='middle' height='50px'><a style='width:100%; height:100%;' class='mymodal' day='" . ($i - $startday + 1) . "' href='#'><p>" . $cYear . " оны " . $monthNames[$cMonth - 1] . "ын " . ($i - $startday + 1) . "</p></a></td>";
+                else{
+                    echo "<td align='center' valign='middle' height='50px'>"
+                    . "<a style='width:100%; height:100%;' class='mymodal' day='" . ($i - $startday + 1) . "' href='#'>"
+                        . "<p>". ($i - $startday + 1) . "</p>";
+                        echo "</a>";
+                        
+                   
+                        echo "<div id='event'>";
+                        $j = 0;
+                        $cday = ($i - $startday + 1);
+                        if($cday < 10){
+                            $cDay = "0".$cday;
+                        }
+                        else{
+                            $cDay = $cday;
+                        }
+                        while(sizeof($minii)>$j){
+                            $startdate = calendarDecode::convertDate($minii[$j]["StrtDt"]);
+                            $enddate = calendarDecode::convertDate($minii[$j]["EndDt"]);
+                            $now = $cYear.$cMonth.$cDay;
+                            $now = (double)$now;
+                            if($startdate <= $now && $now <= $enddate){
+                                echo $minii[$j]["Title"];
+                            }
+                            $j++;
+                            echo "<br>";
+                        }
+                        
+                        echo "</div>";
+                        
+                      
+                }
+                        echo "</td>";
                 if (($i % 7) == 6)
                     echo "</tr>";
             }

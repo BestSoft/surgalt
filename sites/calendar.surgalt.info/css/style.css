@@ -8,3 +8,7 @@
 .hero-unit{
     background-color: #000;
 }
+#checkinput:checked ~ #checktitle, #checkdate{
+        text-decoration: line-through;
+        color: grey;
+    }
