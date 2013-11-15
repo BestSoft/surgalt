@@ -1,19 +1,21 @@
 $(document).ready(function(){
     $('.mymodal').click(function(){
-        $.ajax({url:'http://localhost/surgalt/sites/calendar.surgalt.info/view/event.html.php',data:{day:$(this).attr('day')},type:'POST'}).done(function(data){
+        $.ajax({
+            url:'http://localhost/surgalt/sites/calendar.surgalt.info/view/event.html.php',
+            data:{day:$(this).attr('day')},
+            type:'POST'}).done(function(data){
             $('.modal-body').html(data);
             $('#myModal').modal('show');
         });
     });
-    $('#Recurence').hide();
+        $('#Recurence').hide();
         $('#isrepeat').click(function(){
             $('#Recurence').toggle(this.checked);
-        });
-        $('#Recurence').click(function(){
+        });$('#Recurence').click(function(){
             $('#Hide_hiih').show();
         });
         $("#Radio1").click(function(){
-            $("#option1").show();
+            $("#option1").show(this.checked);
             $("#option1").siblings(".option").hide();
         });
         $("#Radio2").click(function(){
@@ -28,6 +30,6 @@ $(document).ready(function(){
             $("#option4").show();
             $("#option4").siblings(".option").hide();
         });
-    
+    $('a').tooltip({placement: 'top'});
 });
 

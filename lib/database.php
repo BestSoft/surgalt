@@ -10,6 +10,10 @@ class DataBase {
             $user = 'humuunco_surgalt';
             $password = 'Surg@lt';
             $database = 'humuunco_surgalt';
+            /*$host = 'localhost';
+            $user = 'root';
+            $password = '';
+            $database = 'humuunco_surgalt';*/
             self::$instance = mysqli_connect($host, $user, $password, $database);
             self::$instance->set_charset('utf8');
         }
