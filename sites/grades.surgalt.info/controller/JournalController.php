@@ -60,7 +60,7 @@ include PATH_BASE . '/sites/'.HOSTNAME.'/view/JournalView_class.php';
                             </div>
                         <?php 
                     }
-            public static function DrawJournalTeacher_min_cont_now()
+            public static function DrawJournalTeacher_min_cont_now_1()
                     {
                         ?>
                             <div class='journal'>
@@ -68,7 +68,30 @@ include PATH_BASE . '/sites/'.HOSTNAME.'/view/JournalView_class.php';
                                      $lsntm = $_GET["par"];
                                      $lsntp = $_GET["type"];
                                      $lesson = $_GET["lesson"];
-                                     Journal::DrawTeacherJournal_now_min($lesson, $lsntp, $lsntm);
+                                     Journal::DrawTeacherJournal_now_min_1($lesson, $lsntp, $lsntm);
+                                 ?>
+                            </div>
+                        <?php
+                    }
+            public static function DrawJournalTeacher_min_cont_now()
+                    {
+                        ?>
+                            <div class='journal'>
+                                 <?php 
+                                     $lsntp = $_GET["type"];
+                                     $lesson = $_GET["lesson"];
+                                     Journal::DrawTeacherJournal_now_min($lesson, $lsntp);
+                                 ?>
+                            </div>
+                        <?php
+                    }
+            public static function DrawJournalTeacher_mid_cont_now()
+                    {
+                        ?>
+                            <div class='journal'>
+                                 <?php 
+                                     $lesson = $_GET["lesson"];
+                                     Journal::DrawTeacherJournal_now_mid($lesson);
                                  ?>
                             </div>
                         <?php

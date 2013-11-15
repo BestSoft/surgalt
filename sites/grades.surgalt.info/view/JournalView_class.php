@@ -262,7 +262,7 @@ class Journal
                                         echo "<div class='container'><h4>Одоогоор таньд үзэж буй хичээл алга байна</h4></div>";
                                     }
                        }
-          Public static function DrawTeacherJournal_now_min($lesson,$type,$lsntm)
+          Public static function DrawTeacherJournal_now_min_1($lesson,$type,$lsntm)
                   {
                                 $lesson_id = $lesson;
                                 $type_id = $type;
@@ -294,6 +294,7 @@ class Journal
                                                                 echo $result["UsrCd"]; 
                                                                 $next_usrcd[] = $result["UsrCd"];
                                                                 $next_usrid[] = $result["StdID"];
+                                                                $next_usrname[] = $result["UsrNm"];
                                                             ?></td>
                                                         </tr>
                                                  <?php
@@ -318,6 +319,7 @@ class Journal
                                               <tr class='zoodog_row_1'>
                                                   <?php 
                                                   $i = 0;
+                                                  echo "<td> Оюутны нэр </td>";
                                                     while(sizeof($title_journal) > $i)
                                                         {
                                                         echo "<td>";
@@ -333,6 +335,9 @@ class Journal
                                                   {
                                                           echo "<tr>";
                                                           $k = 0;
+                                                              echo "<td>";
+                                                                echo $next_usrname[$j];
+                                                              echo "</td>";
                                                             while(sizeof($week_journal) > $k)
                                                                 {
                                                                     echo "<td>";
@@ -370,8 +375,305 @@ class Journal
                                         {
                                             echo "<div class='container'><h4>Одоогоор оюутан алга байна</h4></div>";
                                         }
+                  }             
+                
+                Public static function DrawTeacherJournal_now_min($lesson,$type)
+                  {
+                                $lesson_id = $lesson;
+                                $type_id = $type;
+                                $query = Lesson::GetTeacherLesson_now_grade_min($lesson_id, $type_id);
+                                $i = 1;
+                                $prev = array();
+                                $prev_week = array();
+                                $prev_LsnNm = array();
+                                if(mysqli_num_rows($query) > 0)
+                                    {
+                                    ?>
+                                    <div class="global_1 span2 ehlel">
+                                            <table class="table table-bordered table_1">
+                                                <tr class="global_row_1">
+                                                    <td>Д</td>
+                                                    <td>Оюутны код</td>
+                                                </tr>
+                                                                    <?php
+                                        while($result = mysqli_fetch_assoc($query))
+                                            {
+                                                 if(!in_array($result["UsrCd"], $prev))
+                                                     {
+                                                 ?>
+                                                        <tr>
+                                                            <td><?php echo $i; ?></td>
+                                                            <td>
+                                                            <?php 
+                                                                echo $result["UsrCd"]; 
+                                                                $next_usrcd[] = $result["UsrCd"];
+                                                                $next_usrid[] = $result["StdID"];
+                                                                $next_usrname[] = $result["UsrNm"];
+                                                            ?></td>
+                                                        </tr>
+                                                 <?php
+                                                     }
+                                                     if(!in_array($result["Week"],$prev_week))
+                                                         {
+                                                            $title_journal[] = $result["LsnNm"].$result["Week"];
+                                                            $week_journal[] = $result["Week"];
+                                                            $next_cntID[] = $result["LsnCntID"];
+                                                         }
+                                                 $prev_week[] = $result["Week"] ;
+                                                 $prev[] = $result["UsrCd"];
+                                                 $prev_LsnNm[] = $result["LsnNm"];
+                                                 $i++;
+                                                 $myarray[] = $result;
+                                            }
+                                            ?>
+                                            </table>
+                                      </div>
+                                      <div class="span7 zoodog ehlel">
+                                          <table class="table table-bordered table_2">
+                                              <tr class='zoodog_row_1'>
+                                                  <?php 
+                                                  $i = 0;
+                                                  echo "<td> Оюутны нэр </td>";
+                                                    while(sizeof($title_journal) > $i)
+                                                        {
+                                                        echo "<td>";
+                                                            echo $title_journal[$i];
+                                                        echo "</td>";
+                                                            $i++;
+                                                        }
+                                                  ?>
+                                              </tr>
+                                              <?php
+                                              $j = 0;
+                                                  while(sizeof($next_usrcd) > $j)
+                                                  {
+                                                          echo "<tr>";
+                                                          $k = 0;
+                                                              echo "<td>";
+                                                                echo $next_usrname[$j];
+                                                              echo "</td>";
+                                                            while(sizeof($week_journal) > $k)
+                                                                {
+                                                                    echo "<td>";
+                                                                    $s = 0;
+                                                                    $tooluur = 0;
+                                                                    $tooluur_1 = 0;
+                                                                        while(sizeof($myarray) > $s)
+                                                                            {
+                                                                                if($myarray[$s]["Week"] == $week_journal[$k])
+                                                                                    {
+                                                                                        if($myarray[$s]["UsrCd"] == $next_usrcd[$j])
+                                                                                            {
+                                                                                                if(isset($myarray[$s]["Pnt"]))
+                                                                                                    {
+                                                                                                        while(sizeof($myarray) > $tooluur)
+                                                                                                            {
+                                                                                                                if($myarray[$s]["Week"] == $myarray[$tooluur]["Week"] && $myarray[$s]["UsrCd"] == $myarray[$tooluur]["UsrCd"])
+                                                                                                                    {
+                                                                                                                        $pnt = $myarray[$s]["Pnt"];
+                                                                                                                        if($tooluur > 0)
+                                                                                                                            {
+                                                                                                                                $pnt = $pnt + $myarray[$s]["Pnt"];
+                                                                                                                            }
+                                                                                                                    }
+                                                                                                                    $tooluur++;
+                                                                                                            }
+                                                                                                                if($tooluur_1 == 0){
+                                                                                                                echo "<a href='#' data-pk='".$next_usrid[$j]."' data-name='".$next_cntID[$k]."' class='dun' >".$pnt."</a>";
+                                                                                                                }
+                                                                                                                $tooluur_1++;
+                                                                                                    }
+                                                                                                    else
+                                                                                                        {
+                                                                                                            echo "<a href='#' data-pk='".$next_usrid[$j]."' data-name='".$next_cntID[$k]."' class='dun' >0</a>";
+                                                                                                        }
+                                                                                            }
+                                                                                    }
+                                                                                    $s++;
+                                                                            }
+                                                                    echo "</td>";
+                                                                    $k++;
+                                                                }
+                                                          echo "</tr>";
+                                                      $j++;
+                                                  }
+                                              ?>
+                                          </table>
+                                      </div>
+                                            <?php
+                                    }
+                                    else
+                                        {
+                                            echo "<div class='container'><h4>Одоогоор оюутан алга байна</h4></div>";
+                                        }
                   }
-    
+                  Public static function DrawTeacherJournal_now_mid($lesson)
+                  {
+                                $lesson_id = $lesson;
+                                $query = Lesson::GetTeacherLesson_now_grade_mid($lesson_id);
+                                $i = 1;
+                                $prev = array();
+                                $prev_week = array();
+                                $prev_LsnNm = array();
+                                if(mysqli_num_rows($query) > 0)
+                                    {
+                                    ?>
+                                    <div class="global_1 span2 ehlel">
+                                            <table class="table table-bordered table_1">
+                                                <tr class="global_row_1">
+                                                    <td>Д</td>
+                                                    <td>Оюутны код</td>
+                                                </tr>
+                                                                    <?php
+                                        while($result = mysqli_fetch_assoc($query))
+                                            {
+                                                 if(!in_array($result["UsrCd"], $prev))
+                                                     {
+                                                 ?>
+                                                        <tr>
+                                                            <td><?php echo $i; ?></td>
+                                                            <td>
+                                                            <?php 
+                                                                echo $result["UsrCd"]; 
+                                                                $next_usrcd[] = $result["UsrCd"];
+                                                                $next_usrid[] = $result["StdID"];
+                                                                $next_usrname[] = $result["UsrNm"];
+                                                            ?></td>
+                                                        </tr>
+                                                 <?php
+                                                     }
+                                                     if(!in_array($result["Week"].$result["LsnCntID"],$prev_week))
+                                                         {
+                                                            $title_journal[] = $result["LsnNm"].$result["Week"];
+                                                            $week_journal[] = $result["Week"];
+                                                            $next_cntID[] = $result["LsnCntID"];
+                                                         }
+                                                 $prev_week[] = $result["Week"].$result["LsnCntID"] ;
+                                                 $prev[] = $result["UsrCd"];
+                                                 $prev_LsnNm[] = $result["LsnNm"];
+                                                 $i++;
+                                                 $myarray[] = $result;
+                                            }
+                                            ?>
+                                            </table>
+                                      </div>
+                                      <div class="span7 zoodog ehlel">
+                                          <table class="table table-bordered table_2">
+                                              <tr class='zoodog_row_1'>
+                                                  <?php 
+                                                  $i = 0;
+                                                  echo "<td>Оюутны нэр</td>";
+                                                    while(sizeof($title_journal) > $i)
+                                                        {
+                                                        echo "<td>";
+                                                            echo $title_journal[$i];
+                                                        echo "</td>";
+                                                            $i++;
+                                                        }
+                                                  ?>
+                                              </tr>
+                                              <?php
+                                              $j = 0;
+                                                  while(sizeof($next_usrcd) > $j)
+                                                  {
+                                                          echo "<tr>";
+                                                              echo "<td>";
+                                                                echo $next_usrname[$j];
+                                                              echo "</td>";
+                                                          $k = 0;
+                                                            while(sizeof($week_journal) > $k)
+                                                                {
+                                                                    echo "<td>";
+                                                                    $s = 0;
+                                                                    $tooluur = 0;
+                                                                    $tooluur_1 = 0;
+                                                                        while(sizeof($myarray) > $s)
+                                                                            {
+                                                                                if($myarray[$s]["Week"] == $week_journal[$k])
+                                                                                    {
+                                                                                        if($myarray[$s]["UsrCd"] == $next_usrcd[$j])
+                                                                                            {
+                                                                                                if(isset($myarray[$s]["Pnt"]))
+                                                                                                    {
+                                                                                                        while(sizeof($myarray) > $tooluur)
+                                                                                                            {
+                                                                                                                if($myarray[$s]["Week"] == $myarray[$tooluur]["Week"] && $myarray[$s]["UsrCd"] == $myarray[$tooluur]["UsrCd"])
+                                                                                                                    {
+                                                                                                                        $pnt = $myarray[$s]["Pnt"];
+                                                                                                                        if($tooluur > 0)
+                                                                                                                            {
+                                                                                                                                $pnt = $pnt + $myarray[$s]["Pnt"];
+                                                                                                                            }
+                                                                                                                    }
+                                                                                                                    $tooluur++;
+                                                                                                            }
+                                                                                                                if($tooluur_1 == 0){
+                                                                                                                echo "<a href='#' data-pk='".$next_usrid[$j]."' data-name='".$next_cntID[$k]."' class='dun' >".$pnt."</a>";
+                                                                                                                }
+                                                                                                                $tooluur_1++;
+                                                                                                    }
+                                                                                                    else
+                                                                                                        {
+                                                                                                            echo "<a href='#' data-pk='".$next_usrid[$j]."' data-name='".$next_cntID[$k]."' class='dun' >0</a>";
+                                                                                                        }
+                                                                                            }
+                                                                                    }
+                                                                                    $s++;
+                                                                            }
+                                                                    echo "</td>";
+                                                                    $k++;
+                                                                }
+                                                          echo "</tr>";
+                                                      $j++;
+                                                  }
+                                              ?>
+                                          </table>
+                                      </div>
+                                            <?php
+                                    }
+                                    else
+                                        {
+                                            echo "<div class='container'><h4>Одоогоор оюутан алга байна</h4></div>";
+                                        }
+                  }
+           public static function Draw($lesson_id)
+                   {
+                        $lsnid = $lesson_id;
+                        $query = Lesson::GetTeacherLesson_now_grade_mid($lsnid);
+                        $myarray = array();
+                        while($result = mysqli_fetch_assoc($query))
+                            {
+                                $myarray[] = $result;
+                                if(in_array($result["StdID"],$omnoh_stdid))
+                                    {
+                                        $niit_oyuutan[] = $result["StdID"];
+                                    }
+                                if(in_array($result["LsnTpID"]."-".$result["Week"], $omnoh_type))
+                                    {
+                                        $niit_lab[] = $result["LsnNm"].$result["Week"];
+                                    }
+                                $omnoh_stdid[] = $result["StdID"];
+                                $omnoh_type[] = $result["LsnTpID"]."-".$result["Week"];
+                            }
+                        $result = array();
+                        echo "<table class='global_1'>";
+                            echo "<tr>";
+                                echo "<td rowspan='2'>";
+                                    echo "Д";
+                                echo "</td>";
+                                echo "<td rowspan='2'>";
+                                    echo "Оюутны код";
+                                echo "</td>";
+                            echo "</tr>";
+                        foreach($myarray as $result)
+                            {
+                                echo "<tr>";
+                                    echo "<td>";
+                                    echo "</td>";
+                                echo "</tr>";
+                            }
+                        echo "</table>";    
+                   }    
 }
 
 

@@ -70,37 +70,31 @@
                 <div class="container">
                     <?php         
                     include PATH_BASE . '/sites/'.HOSTNAME.'/controller/JournalController.php';
-                    if(isset($_GET["lesson"]) && isset($_GET["type"]) && isset($_GET["isav"]) && count($_GET) == 4)
-                        {                                                
-                            DrawJournal::DrawJournalStudent_min_cont();
-                        }
-                        else
-                            {                               
-                            if(isset($_GET["action"]))
-                                {
-                                    if($_GET["action"] == 1)
-                                    DrawJournal::DrawJournalStudent_max_cont();
-                                    if($_GET["action"] == 2)
-                                    DrawJournal::DrawJournalStudent_max_cont_prev();
-                                }
-                            if(isset($_GET["year"]))
-                                    DrawJournal::DrawJournalStudent_mid_cont_prev();
-                            if(isset($_GET["lesson"]) && isset($_GET["type"]) && isset($_GET["par"]))
-                                    DrawJournal::DrawJournalTeacher_min_cont_now ();
-                            if(isset($_GET["lesson"]) && count($_GET) == 2)                               
-                                    DrawJournal::DrawJournalStudent_mid_cont(); 
-                            if(isset($_GET["host"]) && count($_GET))
-                                {
-                                    if($user->getUsrTpID() == 4)
+                            if($user->getUsrTpID() == 4)
                                         {
-                                            DrawJournal::DrawJournalStudent_max_cont();
+                                            if(count($_GET) == 1)
+                                                DrawJournal::DrawJournalStudent_max_cont();
+                                            if(isset($_GET["lesson"]) && isset($_GET["type"]) && isset($_GET["isa"]) && count($_GET) == 4)  
+                                                DrawJournal::DrawJournalStudent_min_cont();
+                                            if(isset($_GET["action"]) && count($_GET) == 2)
+                                            {
+                                                if($_GET["action"] == 2)
+                                                DrawJournal::DrawJournalStudent_max_cont_prev();
+                                            }
+                                            if(isset($_GET["year"]))
+                                                    DrawJournal::DrawJournalStudent_mid_cont_prev();
+                                            if(isset($_GET["lesson"]) && count($_GET) == 2)                               
+                                                    DrawJournal::DrawJournalStudent_mid_cont();
                                         }
                                         else
                                             {
-                                                
+                                            if(isset($_GET["lesson"]) && isset($_GET["type"]) && isset($_GET["par"]) && count($_GET) == 4)
+                                                    DrawJournal::DrawJournalTeacher_min_cont_now_1 ();
+                                            if(isset($_GET["lesson"]) && isset($_GET["type"]) && count($_GET) == 3)
+                                                    DrawJournal::DrawJournalTeacher_min_cont_now ();
+                                            if(isset($_GET["lesson"]) && count($_GET) == 2)
+                                                    DrawJournal::DrawJournalTeacher_mid_cont_now ();
                                             }
-                                }
-                            }
                     ?>
                 </div>
                 </div>

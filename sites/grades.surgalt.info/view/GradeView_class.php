@@ -18,7 +18,7 @@ class GradePage
                 $davhardal = array();
                 $start = null;?>
                 <div class="neg_2">
-                    <a href="?host=<?php echo HOSTNAME ?>&action=1">Одоо судалж буй хичээлүүд</a> <i class="icon-plus"></i>
+                    <a href="?host=<?php echo HOSTNAME ?>">Одоо судалж буй хичээлүүд</a> <i class="icon-plus"></i>
                 <?php 
                 while($result = $query->fetch_assoc())
                     {
@@ -51,51 +51,59 @@ class GradePage
                         <?php
           }
   }
+  
+  
+  
+  
   public static function DrawTeacherMenu_now()
-    {
-          $query = Lesson::GetTeacherLesson();
-          $start = null;
-          $i = 0;
-          $prev_LsnID = 0;
-          $prev_LsnTpID = 0;
-          if(mysqli_num_rows($query) > 0)
-              {
-                    ?>
-                        <div class='neg_2'><a href='#'>Одоо зааж буй хичээлүүд</a> <i class='icon-plus'></i>
-                    <?php
-                  while($result = mysqli_fetch_assoc($query))
-                      {
-                        if($prev_LsnID != $result["LsnID"])
-                            {
-                                if(isset($start))
-                                    {
-                                        $start.="</div>";
-                                    }
-                                    $start.= "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnCd"]."</a> <i class='icon-plus'></i>";
-                            }
-                        if($prev_LsnTpID != $result["LsnTpID"])
-                            {
-                                if($i != 0)
-                                    {
-                                        $start.="</div>";
-                                    }
-                                    $start.= "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnNm"]."</a> <i class='icon-plus'></i>";
-                            }                        
-                        $start.="<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."&par=".$result["LsnTm"]."'>".Decode::DecodePar($result["LsnTm"])."</a></div>";
-                        $prev_LsnID = $result["LsnID"];
-                        $prev_LsnTpID = $result["LsnTpID"];
-                        $i++;
-                      }
-                      echo $start."</div></div>";
-                  ?>
-                        </div>
-                  <?php
-              }
-          else
-              {
-                ?><div class='neg_2'><a href='#'>Та энэ семистер хичээл заагаагүй байна</a> <i class='icon-remove'></div><?php
-              }
-    }
+            {
+            $query = Lesson::GetTeacherLesson();
+            $omnoh_lesson = array();
+            $i = 0;
+            $omnoh_type = -1;
+            if(mysqli_num_rows($query) > 0)
+                {
+                       echo "<div class='neg_2'>";
+                        echo "<a href='#'>Одоо зааж буй хичээлүүд</a> <i class='icon-plus'></i>";
+                            while($result = mysqli_fetch_assoc($query))
+                                {
+                                    if(!in_array($result["LsnID"], $omnoh_lesson))
+                                        {
+                                            $i++;
+                                            if($i>1)
+                                                {
+                                                    echo "</div>";
+                                                        echo "</div>";
+                                                }
+                                            echo "<div class='neg_2 dotorhi_1'>";
+                                                echo "<a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."'>".$result["LsnCd"]."</a> <i class='icon-plus'></i>";
+                                            $j = 0;
+                                        }
+                                        if($omnoh_type != $result["LsnTpID"])
+                                            {
+                                                if($j > 0)
+                                                    {
+                                                       echo "</div>"; 
+                                                    }
+                                                echo "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."'>".$result["LsnNm"]."</a> <i class='icon-plus'></i>";
+                                                    $j++;
+                                            }
+                                            echo "<div class='neg_2 dotorhi_1'>";
+                                                echo "<a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."&par=".$result["LsnTm"]."'>".Decode::DecodePar($result["LsnTm"])."</a>";
+                                            echo "</div>";
+                                    $omnoh_lesson[] = $result["LsnID"];
+                                    $omnoh_type = $result["LsnTpID"];
+                                }
+                       echo "</div>";
+                      echo "</div>";
+                    echo "</div>";
+                }
+                else
+                    {
+                        echo "<div class='neg_2'><a href='#'>Та энэ семистер хичээл заагаагүй байна</a> <i class='icon-remove'></div>";
+                    }
+            }
+ 
     
     public static function DrawStudentMenu_prev()
             {        
