@@ -18,7 +18,7 @@
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
         <div id="content" class="container">
             <div class="page-header">
-                <h1>Хичээлийн агуулга оруулах хэсэг <small>дэд гарчиг</small></h1>
+                <h1>Хичээлийн стандарт оруулах хэсэг <small>дэд гарчиг</small></h1>
             </div>
             <div class="row">
                 <div class="col-md-9">
@@ -26,12 +26,12 @@
                         <table class="table-urgun">
                             <tr>
                                 <td width="300"> <label> Хичээлийн гарчиг</label> </td>
-                                <td> <input class="form-control" type="text" name="title" placeholder="Хичээлийн гарчгийг оруулна уу."> </td>
+                                <td> <input type="text" name="title" placeholder="Хичээлийн гарчгийг оруулна уу."> </td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td><label> Хичээлийн төрөл</label></td>
-                                <td> <input class="form-control" type="text" name="ltype" placeholder="Хичээлийн төрөл."> </td>
+                                <td> <input type="text" name="ltype" placeholder="Хичээлийн төрөл."> </td>
                             </tr>
                             <tr>
                                 <td colspan="2">​<textarea class="span9" name="desc" id="txtArea">Хичээлийн тайлбар оруулна уу.</textarea>
@@ -39,49 +39,49 @@
                             </tr>
                             <tr>
                                 <td> <label> Хичээлийн файлууд хавсаргах</label> </td>
-                                <td> <input class="form-control" type="text" name="attachment" placeholder="Хичээлийн файлууд хавсаргах."> </td>
+                                <td> <input type="text" name="attachment" placeholder="Хичээлийн файлууд хавсаргах."> </td>
                             </tr>
                             <tr>
                                 <td> Холбоос оруулах</td>
-                                <td class="span5"><input class="form-control" type="text" name="" height="30" width="400"/> <input type="button" value="+" /> </td>
+                                <td class="span5"><input type="text" name="" height="30" width="400"/> <input type="button" value="+" /> </td>
                             </tr>
                             <tr> 
                                 <td colspan="2">​<textarea class="span9" name="usemtrl" id="txtArea">Ашиглах материал оруулна уу..</textarea></td>
                             </tr>
                             <tr>
                                 <td> Долоо хоног</td>
-                                <td><input class="form-control" type="text" name="week"/></td>
+                                <td><input type="text" name="week"/></td>
                             </tr>
                             <tr>
                                 <td> Эрэмбэ </td>
-                                <td><input class="form-control" type="text" name="sort"/></td>
+                                <td><input type="text" name="sort"/></td>
                             </tr>
                             <tr>
                                 <td> Даалгаврын оноо</td>
-                                <td><input class="form-control" type="text" name="selfpnt"/></td>
+                                <td><input type="text" name="selfpnt"/></td>
                             </tr>
                             <tr> 
                                 <td>Даалгаврын дуусах хугацаа </td>
-                                <td><input class="form-control" type="text" name="selfenddt"/></td>
+                                <td><input type="text" name="selfenddt"/></td>
                             </tr>
 
 
 
                             <tr> 
                                 <td>Оруулсан хэрэглэгчийн дугаар</td>
-                                <td><input class="form-control" type="text" name="insid"/></td>
+                                <td><input type="text" name="insid"/></td>
                             </tr>
                             <tr> 
                                 <td> Оруулсан  огноо </td>
-                                <td><input class="form-control" type="text" name="insdt"/></td>
+                                <td><input type="text" name="insdt"/></td>
                             </tr>
                             <tr> 
                                 <td>Зассан хэрэглэгчийн дугаар </td>
-                                <td><input class="form-control" type="text" name="updid"/></td>
+                                <td><input type="text" name="updid"/></td>
                             </tr>
                             <tr> 
                                 <td>Зассан огноо </td>
-                                <td><input class="form-control" type="text" name="upddt"/></td>
+                                <td><input type="text" name="upddt"/></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -98,8 +98,8 @@
                 <div class="col-md-3">
                     <ul class="nav nav-pills nav-stacked">
                         <li><a href="/surgalt/index.php?host=lesson.surgalt.info&view=lesson">Үйл явдлын тойм</a></li>
-                        <li class="active"><a href="/surgalt/index.php?host=lesson.surgalt.info&view=lessoncontent">Хичээлийн агуулга</a></li>
-                        <li><a href="/surgalt/index.php?host=lesson.surgalt.info&view=lessondefinition">Хичээлийн стандарт</a></li>
+                        <li><a href="/surgalt/index.php?host=lesson.surgalt.info&view=lessoncontent">Хичээлийн агуулга</a></li>
+                        <li class="active"><a href="/surgalt/index.php?host=lesson.surgalt.info&view=lessondefinition">Хичээлийн стандарт</a></li>
                     </ul>
                 </div>
             </div>
