@@ -18,6 +18,9 @@
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
         <div id="content" class="container">
+            <div class="page-header">
+                <h1><?php echo $this->title; ?></h1>
+            </div>
             <?php if (User::getInstance()->isGuest()) { ?>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="input-prepend">
@@ -32,7 +35,6 @@
                     </div>
                 </form>
             <?php } else { ?>
-                <h1><?php echo $this->title; ?></h1>
                 <div class="items">
                     <?php foreach ($this->lessons as $lesson) { ?>
                         <div>
