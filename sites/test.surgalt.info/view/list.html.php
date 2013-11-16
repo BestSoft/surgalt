@@ -17,13 +17,8 @@
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
-    <main class="bs-masthead" id="content" role="main" style="margin-top: 0%; background-color: #eee;">
-        <div class="container" style="height: 700px; margin-top: 82px;">
-
-            <p></p>
-            <p></p>
-            <?php if (User::getInstance()->isGuest()) {
-                ?>
+        <div id="content" class="container">
+            <?php if (User::getInstance()->isGuest()) { ?>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="input-prepend">
                         <span class="add-on"><i class="icon-envelope"></i></span><input type="text" name="email" class="namefield" tabindex="1" size="18" placeholder="Цахим шуудангийн хаяг">
@@ -36,9 +31,7 @@
                         <label for="modlgn-remember" class="control-label"><input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes">Сануулах</label>
                     </div>
                 </form>
-                <?php
-            } else {
-                ?>
+            <?php } else { ?>
                 <h1><?php echo $this->title; ?></h1>
                 <div class="items">
                     <?php foreach ($this->lessons as $lesson) { ?>
@@ -56,13 +49,8 @@
                     }
                     ?>
                 </div>
-                <?php
-            }
-            ?>
+            <?php } ?>
         </div>
-    </main>
-    <div style="background-color: #eee;">
         <?php include PATH_BASE . '/tpl/footer.php'; ?>
-    </div>
-</body>
+    </body>
 </html> 

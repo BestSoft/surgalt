@@ -17,13 +17,9 @@
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
-        <main class="bs-masthead" id="content" role="main" style="margin-top: 0%; background-color: #eee;">
-            <div class="container" style="height: 700px; margin-top: 6%;">
-                 <?php include $include; ?>
-            </div>
-        </main>
-        <div style="background-color: #eee;">
-             <?php include PATH_BASE . '/tpl/footer.php'; ?>
+        <div id="content" class="container">
+            <?php include $include; ?>
         </div>
+        <?php include PATH_BASE . '/tpl/footer.php'; ?>
     </body>
 </html> 

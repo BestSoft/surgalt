@@ -17,12 +17,15 @@
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
-        <?php include PATH_BASE . "/sites/".HOSTNAME."/controller/decode_class.php"; ?>
-        <?php include PATH_BASE . "/sites/".HOSTNAME."/model/LessonModel_class.php"; ?>        
-        <?php include PATH_BASE . "/sites/".HOSTNAME."/view/GradeView_class.php"; ?>
-        <main class="bs-masthead" id="content" role="main">        
-                <?php  include 'example3.php'; ?>
-        </main>
+        <?php include PATH_BASE . "/sites/" . HOSTNAME . "/controller/decode_class.php"; ?>
+        <?php include PATH_BASE . "/sites/" . HOSTNAME . "/model/LessonModel_class.php"; ?>        
+        <?php include PATH_BASE . "/sites/" . HOSTNAME . "/view/GradeView_class.php"; ?>
+        <div id="content" class="container">
+            <div class="page-header">
+                <h1>Журнал <small>багшийн</small></h1>
+            </div>
+            <?php include 'example3.php'; ?>
+        </div>
         <?php include PATH_BASE . '/tpl/footer.php'; ?>
     </body>
 </html> 

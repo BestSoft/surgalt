@@ -17,11 +17,12 @@
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
-        <main class="bs-masthead" id="content" role="main">
-            <div class="container">
-                <?php include 'homeview.php'; ?>
+        <div id="content" class="container">
+            <div class="page-header">
+                <h1>Хичээл <small>үйл явдлын тойм</small></h1>
             </div>
-        </main>
+            Тухайн хэрэглэгчийн хичээлүүдийн нэгдсэн самбарын мэдээлэл харагдана.
+        </div>
         <?php include PATH_BASE . '/tpl/footer.php'; ?>
     </body>
 </html> 
