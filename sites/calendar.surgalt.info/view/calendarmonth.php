@@ -1,6 +1,6 @@
 <?php
 
-class CalendarView {
+class CalendarMonthView {
 
     function __construct() {
         
@@ -10,7 +10,7 @@ class CalendarView {
         if (User::getInstance()->isGuest()) {
             echo 'Хандах эрхгүй байна.';
         } else {
-            include_once 'calendar.html.php';
+            include_once 'calendarmonth.html.php';
         }
     }
     
