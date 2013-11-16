@@ -34,12 +34,17 @@ if ($next_month == 13) {
 ?>
 <div class="row-fluid">
     <div class="span9">
-        <a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $prev_month . "&year=" . $prev_year; ?>" style="float: left;">Өмнөх сар</a>
-        <a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $next_month . "&year=" . $next_year; ?>" style="float: right;">Дараагийн сар</a> 
-
+        <h3>Сараар календар харуулах</h3>
+        <div class="btn-group">
+            <a href="/surgalt/index.php?host=calendar.surgalt.info&m=view"><button class="btn">Сараар</button></a>
+            <a href="/surgalt/index.php?host=calendar.surgalt.info&w=view"><button class="btn">7 хоногоор</button></a>
+            <a href="/surgalt/index.php?host=calendar.surgalt.info&d=view"><button class="btn">Өдрөөр</button></a>
+        </div>  
+        
+        
+        <a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $next_month . "&year=" . $next_year; ?>" style="float: right;">Дараа сар</a>
+        <a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $prev_month . "&year=" . $prev_year; ?>" style="float: right;">Өмнөх сар</a>
         <table width="100%" border="2" cellpadding="2" cellspacing="2" class="table table-bordered">
-
-
             <tr align="center">
                 <td colspan="7" bgcolor="#999999" style="color:#FFFFFF"><strong><?php echo $monthNames[$cMonth - 1] . ' ' . $cYear; ?></strong></td>
             </tr>
@@ -61,26 +66,20 @@ if ($next_month == 13) {
             $nMonth = $cMonth+1;
             $db=  DataBase::getInstance();
             $user = User::getInstance();
-            $sql="select StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '".$cYear."/".$cMonth."/01' and '".$cYear."/".$nMonth."/01') or (EndDt between '".$cYear."/".$cMonth."/01' and '".$cYear."/".$nMonth."/01')) and TpUsrID =".$user->getUsrID();;
+            $sql="select CalID, StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '".$cYear."/".$cMonth."/01' and '".$cYear."/".$nMonth."/01') or (EndDt between '".$cYear."/".$cMonth."/01' and '".$cYear."/".$nMonth."/01')) and TpUsrID =10000000".$user->getUsrID();
             $query=$db->query($sql);
             include PATH_BASE."/sites/".HOSTNAME."/controller/calendarDecode.php";
             $minii=array();
             while ($result = mysqli_fetch_assoc($query)){
                 $minii[] = $result;
             }
-            
             for ($i = 0; $i < ($maxday + $startday); $i++) {
                 if (($i % 7) == 0)
                     echo "<tr>";
                 if ($i < $startday)
                     echo "<td></td>";
                 else{
-                    echo "<td align='center' valign='middle' height='50px'>"
-                    . "<a style='width:100%; height:100%;' class='mymodal' day='" . ($i - $startday + 1) . "' href='#'>"
-                        . "<p>". ($i - $startday + 1) . "</p>";
-                        echo "</a>";
-                        
-                   
+                    echo "<td align='center' valign='middle' height='50px' class='mymodal' day='" . ($i - $startday + 1) . "'><p>". ($i - $startday + 1) . "</p>";
                         echo "<div id='event'>";
                         $j = 0;
                         $cday = ($i - $startday + 1);
@@ -96,15 +95,12 @@ if ($next_month == 13) {
                             $now = $cYear.$cMonth.$cDay;
                             $now = (double)$now;
                             if($startdate <= $now && $now <= $enddate){
-                                echo $minii[$j]["Title"];
+                                echo "<a class='badge' data-toggle='tooltip' data-original-title='".$minii[$j]["Title"]."'>".$minii[$j]["CalID"]."</a>";
                             }
                             $j++;
                             echo "<br>";
                         }
-                        
                         echo "</div>";
-                        
-                      
                 }
                         echo "</td>";
                 if (($i % 7) == 6)
@@ -114,7 +110,6 @@ if ($next_month == 13) {
         </table>
     </div>
     <div class="span3">
-
         <?php include PATH_BASE . "/sites/" . HOSTNAME . "/view/list.view.php"; ?>
     </div>
 </div>

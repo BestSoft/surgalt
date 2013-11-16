@@ -8,7 +8,6 @@ $(document).ready(function(){
             $('#myModal').modal('show');
         });
     });
-    $(document).ready(function(){
         $('#Recurence').hide();
         $('#isrepeat').click(function(){
             $('#Recurence').toggle(this.checked);
@@ -31,7 +30,6 @@ $(document).ready(function(){
             $("#option4").show();
             $("#option4").siblings(".option").hide();
         });
-});
-    
+    $('a').tooltip({placement: 'top'});
 });
 

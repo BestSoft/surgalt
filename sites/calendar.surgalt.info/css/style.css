@@ -8,7 +8,10 @@
 .hero-unit{
     background-color: #000;
 }
-#checkinput:checked ~ #checktitle, #checkdate{
+#checkinput:checked ~ #checktitle{
         text-decoration: line-through;
         color: grey;
+    }
+.mymodal:hover {
+        background-color: #0088cc;
     }
