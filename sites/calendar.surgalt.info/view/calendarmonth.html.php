@@ -58,21 +58,24 @@
             <div class="row">
                 <div class="col-md-9">
                     <ul class="pager">
-                        <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $prev_month . "&year=" . $prev_year; ?>">Өмнөх 7 хоног</a></li>
-                        <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $next_month . "&year=" . $next_year; ?>">Дараа 7 хоног</a></li>
+                        <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $prev_month . "&year=" . $prev_year; ?>">Өмнөх сар</a></li>
+                        <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $next_month . "&year=" . $next_year; ?>">Дараа сар</a></li>
                     </ul>
-                    <table width="100%" border="2" cellpadding="2" cellspacing="2" class="table table-bordered">
+                    <table width="100%" class="table table-bordered" style="height: 500px;">
                         <tr align="center">
                             <td colspan="7" bgcolor="#999999" style="color:#FFFFFF"><strong><?php echo $monthNames[$cMonth - 1] . ' ' . $cYear; ?></strong></td>
                         </tr>
                         <tr>
-                            <td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Ням&nbsp;&nbsp;&nbsp;</strong></td>
-                            <td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Даваа&nbsp;</strong></td>
-                            <td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Мягмар</strong></td>
-                            <td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Лхагва</strong></td>
-                            <td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Пүрэв</strong></td>
-                            <td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Баасан</strong></td>
-                            <td align="center" bgcolor="#999999" style="color:#FFFFFF"><strong>Бямба</strong></td>
+                            <a class="glyphicon glyphicon-pushpin" style="color: green"> - Хичээлийн цагийн хуваарийн тэмдэглэгээ </a><br>
+                            <a class="glyphicon glyphicon-pushpin" style="color: red"> - Хувийн тэмдэглэл, үйл ажиллагааний тэмдэглэгээ</a><br>
+                            <a class="glyphicon glyphicon-pushpin" style="color: blue"> - Нийтийн үйл ажиллагааны тэмдэглэгээ</a>
+                            <td align="center" bgcolor="#999999" style="color:#FFFFFF;"><strong>Ням&nbsp;&nbsp;&nbsp;</strong></td>
+                            <td align="center" bgcolor="#999999" style="color:#FFFFFF;"><strong>Даваа&nbsp;</strong></td>
+                            <td align="center" bgcolor="#999999" style="color:#FFFFFF;"><strong>Мягмар</strong></td>
+                            <td align="center" bgcolor="#999999" style="color:#FFFFFF;"><strong>Лхагва</strong></td>
+                            <td align="center" bgcolor="#999999" style="color:#FFFFFF;"><strong>Пүрэв</strong></td>
+                            <td align="center" bgcolor="#999999" style="color:#FFFFFF;"><strong>Баасан</strong></td>
+                            <td align="center" bgcolor="#999999" style="color:#FFFFFF;"><strong>Бямба</strong></td>
                         </tr>
                         <?php
                         $link = BASE_URL;
@@ -111,7 +114,7 @@
                                     $now = $cYear . $cMonth . $cDay;
                                     $now = (double) $now;
                                     if ($startdate <= $now && $now <= $enddate) {
-                                        echo "<a class='badge' data-toggle='tooltip' data-original-title='" . $minii[$j]["Title"] . "'>" . $minii[$j]["CalID"] . "</a>";
+                                        echo "<a class='glyphicon glyphicon-pushpin privateevent' data-toggle='tooltip' data-original-title='" . $minii[$j]["Title"] . "' ></a>";
                                     }
                                     $j++;
                                     echo "<br>";
@@ -131,10 +134,10 @@
                         <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarweek">7 хоногоор</a></li>
                         <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarday">Өдрөөр</a></li>
                     </ul>
-                    <?php include PATH_BASE . "/sites/" . HOSTNAME . "/view/list.view.php"; ?>
+                    <?php include PATH_BASE . "/sites/" . HOSTNAME . "/view/listview.php"; ?>
                 </div>
             </div>
-            <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <!--<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <form method="POST" action="/surgalt/index.php?host=calendar.surgalt.info&action=1">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -147,7 +150,26 @@
                         <input class="btn btn-primary" type="submit" value="Хадгалах"/>
                     </div>
                 </form>
-            </div>
+            </div>-->
+            <div id="myModal" class="modal fade">
+                <form class="form-horizontal" role="form" method="POST" action="/surgalt/index.php?host=calendar.surgalt.info&action=1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">Үйл ажиллагаа оруулах</h4>
+                    </div>
+                    <div class="modal-body">
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Хаах</button>
+                      <button type="submit" class="btn btn-primary">Хадгалах</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+                </form>
+              </div><!-- /.modal -->
         </div>
         <?php include PATH_BASE . '/tpl/footer.php'; ?>
     </body>

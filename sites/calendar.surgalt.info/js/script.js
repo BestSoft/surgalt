@@ -8,28 +8,8 @@ $(document).ready(function(){
             $('#myModal').modal('show');
         });
     });
-        $('#Recurence').hide();
-        $('#isrepeat').click(function(){
-            $('#Recurence').toggle(this.checked);
-        });$('#Recurence').click(function(){
-            $('#Hide_hiih').show();
-        });
-        $("#Radio1").click(function(){
-            $("#option1").show(this.checked);
-            $("#option1").siblings(".option").hide();
-        });
-        $("#Radio2").click(function(){
-            $("#option2").show();
-            $("#option2").siblings(".option").hide();
-        });
-        $("#Radio3").click(function(){
-            $("#option3").show();
-            $("#option3").siblings(".option").hide();
-        });
-        $("#Radio4").click(function(){
-            $("#option4").show();
-            $("#option4").siblings(".option").hide();
-        });
+    $('.recurencetable').hide();
     $('a').tooltip({placement: 'top'});
 });
+
 

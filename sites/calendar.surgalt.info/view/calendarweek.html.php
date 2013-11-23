@@ -61,56 +61,33 @@
                         <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $prev_month . "&year=" . $prev_year; ?>">Өмнөх 7 хоног</a></li>
                         <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $next_month . "&year=" . $next_year; ?>">Дараа 7 хоног</a></li>
                     </ul>
-                    <table class="table table-hover">
-                        <?php
-                        for ($m = 0; $m < 20; $m++) {
-                            $week_time = 6;
-                            ?>
+                    <table class="table table-bordered table-hover">
+                        <thead>
                             <tr>
-                                <td><?php
-                                    if ($m == 0) {
-                                        echo 'Цаг';
-                                    } else {
-                                        echo $week_time + $m;
-                                    }
-                                    ?></td>
-                                <?php
-                                for ($d = 0; $d < 7; $d++) {
-                                    ?>
-                                    <td width="150">
-                                        <?php
-                                        if ($m == 0) {
-                                            switch ($d) {
-                                                case 0:
-                                                    echo 'Даваа';
-                                                    break;
-                                                case 1:
-                                                    echo 'Мягмар';
-                                                    break;
-                                                case 2:
-                                                    echo 'Лхагва';
-                                                    break;
-                                                case 3:
-                                                    echo 'Пүрэв';
-                                                    break;
-                                                case 4:
-                                                    echo 'Баасан';
-                                                    break;
-                                                case 5:
-                                                    echo 'Бямба';
-                                                    break;
-                                                case 6:
-                                                    echo 'Ням';
-                                                    break;
-                                            }
-                                        }
-                                        ?>
-                                    </td>
-                                    <?php
-                                }
-                                ?>
+                                <td><b>Цаг</b></td>
+                                <td><b>Даваа</b></td>
+                                <td><b>Мягмар</b></td>
+                                <td><b>Лхагва</b></td>
+                                <td><b>Пүрэв</b></td>
+                                <td><b>Баасан</b></td>
+                                <td><b>Бямба</b></td>
+                                <td><b>Ням</b></td>
                             </tr>
-                            <?php
+                        </thead>
+                        <?php
+                        for($i=7; $i<21; $i++){
+                        ?>
+                        <tr>
+                            <td><?php echo $i.":00";?></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                        </tr>
+                        <?php
                         }
                         ?>
                     </table>
@@ -121,7 +98,7 @@
                         <li class="active"><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarweek">7 хоногоор</a></li>
                         <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarday">Өдрөөр</a></li>
                     </ul>
-                    <?php include_once PATH_BASE . "/sites/" . HOSTNAME . "/view/list.view.php"; ?>
+                    <?php include_once PATH_BASE . "/sites/" . HOSTNAME . "/view/listview.php"; ?>
                 </div>
             </div>
             <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

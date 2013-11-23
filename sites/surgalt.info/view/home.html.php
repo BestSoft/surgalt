@@ -25,7 +25,7 @@
                 <div class="input-prepend">
                     <span class="add-on"><i class="icon-key"></i></span><input type="password" name="password" class="passfield" tabindex="2" size="18" placeholder="Нууц үг">
                 </div>
-                <button type="submit" tabindex="3" name="signin" class="btn btn-primary"><i class="icon-arrow-right"></i></button>
+                <button type="submit" tabindex="3" name="signin" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span></button>
                 <div id="form-login-remember" class="control-group checkbox">
                     <label for="modlgn-remember" class="control-label"><input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes">Сануулах</label>
                 </div>

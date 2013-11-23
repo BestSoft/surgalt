@@ -31,4 +31,34 @@
         </tracks>
         <trackCR>&copyright;</trackCR>
         </CD>
+        <CD id="002">
+            <CDName>It's Time</CDName>
+            <tracks>
+                <track trackNumber="1">
+                    <Title>Feeling Good</Title>
+                    <Artist>Micheal Buble</Artist>
+                    <Genres>
+                        <Genre>&j;</Genre>
+                    </Genres>
+                    <length>00:02:47</length>
+                </track>
+                <track trackNumber="2">
+                    <Title>Home</Title>
+                    <Artist>Micheal Buble</Artist>
+                    <Genres>
+                        <Genre>&j;</Genre>
+                    </Genres>
+                    <length>00:04:11</length>
+                </track>
+                <track trackNumber="3">
+                    <Title>You don't know me</Title>
+                    <Artist>Micheal buble</Artist>
+                    <Genres>
+                        <Genre>&j;</Genre>
+                    </Genres>
+                    <length>00:03:39</length>
+                </track>
+            </tracks>
+            <trackCR>&copyright;</trackCR>
+        </CD>
     </CDs>

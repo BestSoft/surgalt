@@ -1,0 +1,40 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+    <xs:element name="CDs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CD">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="CDName"/>
+                            <xs:element name="tracks">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="track" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:string" name="Title"/>
+                                                    <xs:element type="xs:string" name="Artist"/>
+                                                    <xs:element name="Genres">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:string" name="Genre"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element type="xs:time" name="length"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:byte" name="trackNumber" use="optional"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="trackCR"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:byte" name="id"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

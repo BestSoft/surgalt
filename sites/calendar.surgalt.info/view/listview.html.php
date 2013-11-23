@@ -1,21 +1,4 @@
-<?php
-include PATH_BASE . "/sites/" . HOSTNAME . "/model/modCalendar.php";
-
-class listViewEvent {
-
-    static private $instance;
-    static private $user_id;
-
-    function __construct() {
-        $user = User::getInstance();
-        listViewEvent::$user_id = $user->getUsrID();
-    }
-
-    public static function select() {
-        $query = Calendar::selectAllEvent();
-        if (isset($query)) {
-            ?>
-            <table class="table-bordered" border="2" style="width: 100%;">
+<table class="table-bordered" border="2" style="width: 100%;">
                 <tr>
                     <td class="Table_header" colspan="3">
                         Жагсаалтууд
@@ -28,7 +11,6 @@ class listViewEvent {
                     <td>
                         Эхлэх огноо
                     </td>
-                <tr>
             <?php
             While ($result = $query->fetch_assoc()) {
                 ?>
@@ -45,11 +27,3 @@ class listViewEvent {
             }
             ?>
             </table>
-                <?php
-            }
-        }
-
-    }
-
-    listViewEvent::select();
-    ?>

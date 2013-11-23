@@ -13,5 +13,14 @@
         color: grey;
     }
 .mymodal:hover {
-        background-color: #0088cc;
+        background-color: #bbb;
+    }
+.lessonevent {
+        color : green;
+    }
+    .privateevent {
+        color: red;
+    }
+    .publicevent {
+        color: blue;
     }

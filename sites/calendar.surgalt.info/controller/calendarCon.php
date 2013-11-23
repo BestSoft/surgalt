@@ -8,9 +8,9 @@ class CalendarControllerClass {
     }
     
     public static function checkAction() {
-        if(isset($_GET["event"]))
+        if(isset($_GET["action"]))
                     {
-                    if($_GET["event"] == 1)
+                    if($_GET["action"] == 1)
                         {
                         include_once PATH_BASE.'/sites/'.HOSTNAME."/model/modCalendar.php";
                         }                                            

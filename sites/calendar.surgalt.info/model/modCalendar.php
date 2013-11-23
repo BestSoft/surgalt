@@ -1,5 +1,4 @@
 <?php
-
 class Calendar {
 
     public $day;
@@ -34,18 +33,18 @@ class Calendar {
             $this->Title = $_POST['title'];
             $this->Location = $_POST['location'];
             $this->Tag = $_POST['tag'];
-            $this->StartDate = 'null';
-            $this->EndDate = 'null';
-            $this->Status = 'null';
-            $this->IsDay = 'NULL';
-            $this->TypeUserID = "10219";
-            $this->Description = 'NULL';
-            $this->Repeatable = 'NULL';
-            $this->RepeatEndDate = 'null';
-            $this->IsPrivate = "1";
-            $this->CommentID = "2";
-            $this->InsertDate = 'null';
-            $this->UpdateDate = 'null';
+            $this->StartDate = $_POST['strdt']; 
+            $this->EndDate = $_POST['enddt'];
+            $this->Status = $_POST['stts'];
+            $this->IsDay = $_POST['isday'];
+            $this->TypeUserID = $_POST['tpusrid'];
+            $this->Description = $_POST['desc'];
+            $this->Repeatable = $_POST['rptable'];
+            $this->RepeatEndDate = $_POST['rptenddt'];
+            $this->IsPrivate = $_POST['isprivate'];
+            $this->CommentID = $_POST['commendid'];
+            $this->InsertDate = $_POST['insid']; 
+            $this->UpdateDate = $_POST['updid'];
         }
     }
 
@@ -67,7 +66,7 @@ class Calendar {
                 . "" . $this->UserID . ","
                 . "" . $this->UpdateDate . ")";
         $query = $this->db->query($sql);
-        if (isset($_GET['action'])) {
+        if (isset($_GET['event'])) {
             header("location: /surgalt/?host=" . HOSTNAME);
             die();
         }
@@ -82,6 +81,26 @@ class Calendar {
         $query = $db->query($sql);
         echo $db->error;
         return $query;
+    }
+    
+    public static function selectTeacherTimeTable(){
+        $db = DataBase::getInstance();
+        $user = User::getInstance();
+        
+        $UserID = $user->getUsrID();
+        $UserType = $user->getUsrTpID();
+        $sql = "select * from teachertimetable where TchID = ". $UserID." and UsrTpID = ". $UserType;
+        $query = $db->query($sql);
+        echo $db->error;
+        return $query;
+    }
+    
+    public static function selectStudentTimeTable(){
+        $db = DataBase::getInstance();
+        $user = User::getInstance();
+        
+        $UserID = $user->getUsrID;
+        $sql = "select * from studenttimetable where StdID = ". $UserID;
     }
 
 }

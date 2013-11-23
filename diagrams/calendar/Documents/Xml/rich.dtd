@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT CDs (CD)>
+<!ELEMENT CDs (CD*)>
 <!ELEMENT CD (CDName, tracks, trackCR)>
 <!ELEMENT CDName (#PCDATA)>
 <!ELEMENT tracks (track+)>
@@ -18,4 +18,5 @@
 <!ENTITY p "Pop">
 <!ENTITY e "Electro">
 <!ENTITY kp "KPop">
+<!ENTITY j "Jazz">
 <!ENTITY copyright "@Copyright">
