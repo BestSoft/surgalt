@@ -38,13 +38,18 @@
                 $_REQUEST["month"] = date("n");
             if (!isset($_REQUEST["year"]))
                 $_REQUEST["year"] = date("Y");
+            if (!isset($_REQUEST["day"]))
+                $_REQUEST["day"] = date("d");
             $cMonth = $_REQUEST["month"];
             $cYear = $_REQUEST["year"];
+            $cDay = $_REQUEST["day"];
 
             $prev_year = $cYear;
             $next_year = $cYear;
-            $prev_month = $cMonth - 1;
-            $next_month = $cMonth + 1;
+            $prev_month = $cMonth;
+            $next_month = $cMonth;
+            $prev_day = $cDay - 1;
+            $next_day = $cDay + 1;
 
             if ($prev_month == 0) {
                 $prev_month = 12;
@@ -54,30 +59,75 @@
                 $next_month = 1;
                 $next_year = $cYear + 1;
             }
+            if ($prev_day == 0)
+            {
+                $prev_month = $prev_month - 1;
+                if($prev_month == 2){
+                    if($prev_year % 4 == 0){
+                        $prev_day = 29;
+                    }
+                }
+                if($prev_month == 1 || $prev_month == 3 || $prev_month == 5 || $prev_month == 7 || $prev_month == 8 || $prev_month == 10 || $prev_month == 12 ){
+                    $prev_day = 31;
+                    $prev_month = $cMonth - 1;
+                }
+                if($prev_month == 4 || $prev_month == 6 || $prev_month == 9 || $prev_month == 11){
+                    $prev_day = 30;
+                    $prev_month = $cMonth - 1;
+                }
+            }
+            if($prev_month == 2){
+                if($prev_year % 4 == 0)
+                    if($cDay == 30){
+                        $cDay = 1;
+                        $next_month = $cMonth + 1;
+                    }
+            }else{
+                if($cMonth == 4 || $cMonth == 6 || $cMonth == 9 || $cMonth == 11){
+                    if($cDay == 31){
+                        $cDay == 1;
+                        $next_month + 1;
+                    }
+                }
+                if($cMonth == 1 || $cMonth == 3 || $cMonth == 5 || $cMonth == 7 || $cMonth == 8 || $cMonth == 10 || $cMonth == 12)
+                {
+                    if($cDay == 32){
+                        $cDay == 1;
+                        $next_month = $cMonth + 1;
+                    }
+                }
+            }
             ?>
             <div class="row">
                 <div class="col-md-9">
                     <ul class="pager">
-                        <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $prev_month . "&year=" . $prev_year; ?>">Өмнөх өдөр</a></li>
-                        <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $next_month . "&year=" . $next_year; ?>">Дараа өдөр</a></li>
+                        <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info&view=calendarday" . "&month=" . $prev_month . "&year=" . $prev_year . "&day" . $prev_day; ?>">Өмнөх өдөр</a></li>
+                        <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info&view=calendarday" . "&month=" . $next_month . "&year=" . $next_year . "&day" . $next_day; ?>">Дараа өдөр</a></li>
                     </ul>
-                    <table Class="table table-hover">
+                    <h4>
+                    <?php
+                    echo $cYear." Оны ";
+                    echo $cMonth." Сарын ";
+                    $today = getdate();
+                    echo $today['mday'];
+                    echo $cDay. " өдөр";
+                    ?>
+                        </h4>
+                    <table Class="table table-hover table-bordered">
                         <thead>
                         <tr>
-                            <td><b>Дугаар</b></td>
-                            <td><b>Гарчиг</b></td>
-                            <td><b>Хаана</b></td>
-                            <td><b>Хамрах хугацаа</b></td>
-                            <td><b>Тайлбар</b></td>
+                            <td style="width: 150px;"><b>Цаг</b></td>
+                            <td><b>Үйл ажиллагаанууд</b></td>
                         </tr>
                         </thead>
+                        <?php
+                            for($i=7; $i<24; $i++){
+                            ?>
                         <tr>
-                            <td>Дугаар 1</td>
-                            <td>Гарчиг 1</td>
-                            <td>Хаана 1</td>
-                            <td>Хамрах хугацаа 1</td>
-                            <td>Тайлбар 1</td>
+                            <td><?php echo $i.":00";?></td>
+                            <td>hhh</td>
                         </tr>
+                        <?php } ?>
                     </table>
                 </div>
                 <div class="col-md-3">

@@ -5,12 +5,14 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/css/bootstrap-datetimepicker.min.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/css/bootstrap-theme.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/css/bootstrap-editable.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/css/style.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/css/style.css" />
         <script src="<?php echo BASE_URL; ?>/js/jquery.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/bootstrap.js"></script>
+        <script src="<?php echo BASE_URL; ?>/js/bootstrap-datetimepicker.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/bootstrap-editable.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/script.js"></script>
         <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/script.js"></script>
@@ -56,14 +58,23 @@
             }
             ?>
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-12">
+                    <!--<ul class="nav nav-pills nav-justified">
+                        <li class="active"><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarmonth">Сараар</a></li>
+                        <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarweek">7 хоногоор</a></li>
+                        <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarday">Өдрөөр</a></li>
+                    </ul>-->
+                    <?php
+                    include_once PATH_BASE . "/sites/" . HOSTNAME . "/model/modCalendar.php";
+                    /*$timetable = Calendar::selectStudentTimeTable();*/
+                    ?>
                     <ul class="pager">
                         <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $prev_month . "&year=" . $prev_year; ?>">Өмнөх сар</a></li>
                         <li><a class="btn" href="<?php echo BASE_URL . "?host=calendar.surgalt.info" . "&month=" . $next_month . "&year=" . $next_year; ?>">Дараа сар</a></li>
                     </ul>
                     <table width="100%" class="table table-bordered" style="height: 500px;">
                         <tr align="center">
-                            <td colspan="7" bgcolor="#999999" style="color:#FFFFFF"><strong><?php echo $monthNames[$cMonth - 1] . ' ' . $cYear; ?></strong></td>
+                            <td colspan="7" bgcolor="#999999" style="color:#FFFFFF"><strong><?php echo $monthNames[$cMonth - 1] . ' ' . $cYear; ?></strong><a href='/surgalt/index.php?host=calendar.surgalt.info&view=calendarday' data-toggle='tooltip' data-original-title='Сараар жагсаалт харах'><span style='float: right;' class='glyphicon glyphicon-align-justify'></span></a></td>
                         </tr>
                         <tr>
                             <a class="glyphicon glyphicon-pushpin" style="color: green"> - Хичээлийн цагийн хуваарийн тэмдэглэгээ </a><br>
@@ -86,8 +97,8 @@
                         $nMonth = $cMonth + 1;
                         $db = DataBase::getInstance();
                         $user = User::getInstance();
-                        $sql = "select CalID, StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $nMonth . "/01') or (EndDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $nMonth . "/01')) and TpUsrID =10000000" . $user->getUsrID();
-                        $query = $db->query($sql);
+                        $calendarsql = "select CalID, StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $nMonth . "/01') or (EndDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $nMonth . "/01')) and TpUsrID =10000000" . $user->getUsrID();
+                        $query = $db->query($calendarsql);
                         include PATH_BASE . "/sites/" . HOSTNAME . "/controller/calendarDecode.php";
                         $minii = array();
                         while ($result = mysqli_fetch_assoc($query)) {
@@ -99,7 +110,9 @@
                             if ($i < $startday)
                                 echo "<td></td>";
                             else {
-                                echo "<td align='center' valign='middle' height='50px' class='mymodal' day='" . ($i - $startday + 1) . "'><p>" . ($i - $startday + 1) . "</p>";
+                                echo "<td class='dayselect' align='center' valign='middle' height='120px'><p>" . ($i - $startday + 1);
+                                echo "<a data-toggle='tooltip' data-original-title='Үйл ажиллагаа нэмэх'><span style='float:left;' class='glyphicon glyphicon-plus mymodal' day='".($i - $startday + 1)."'></span></a>";
+                                echo "<a class='showlistbyday' data-toggle='tooltip' data-original-title='Жагсаалт хэлбэрээр харах' year='".$cYear."' month='".$cMonth."' day='".($i - $startday + 1)."'><span style='float: right;' class='glyphicon glyphicon-align-justify'></span></a></p>";
                                 echo "<div id='event'>";
                                 $j = 0;
                                 $cday = ($i - $startday + 1);
@@ -114,7 +127,7 @@
                                     $now = $cYear . $cMonth . $cDay;
                                     $now = (double) $now;
                                     if ($startdate <= $now && $now <= $enddate) {
-                                        echo "<a class='glyphicon glyphicon-pushpin privateevent' data-toggle='tooltip' data-original-title='" . $minii[$j]["Title"] . "' ></a>";
+                                        echo "<a class='glyphicon glyphicon-pushpin privateevent' data-toggle='tooltip' data-original-title='" . $minii[$j]["Title"] . "' >"." ".$minii[$j]["Title"]."</a>";
                                     }
                                     $j++;
                                     echo "<br>";
@@ -128,29 +141,10 @@
                         ?>
                     </table>
                 </div>
-                <div class="col-md-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarmonth">Сараар</a></li>
-                        <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarweek">7 хоногоор</a></li>
-                        <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarday">Өдрөөр</a></li>
-                    </ul>
+                <!--<div class="col-md-3">
                     <?php include PATH_BASE . "/sites/" . HOSTNAME . "/view/listview.php"; ?>
-                </div>
+                </div>-->
             </div>
-            <!--<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <form method="POST" action="/surgalt/index.php?host=calendar.surgalt.info&action=1">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">Шинэ үйл ажиллагаа нэмэх</h3>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Хаах</button>
-                        <input class="btn btn-primary" type="submit" value="Хадгалах"/>
-                    </div>
-                </form>
-            </div>-->
             <div id="myModal" class="modal fade">
                 <form class="form-horizontal" role="form" method="POST" action="/surgalt/index.php?host=calendar.surgalt.info&action=1">
                 <div class="modal-dialog">
@@ -169,7 +163,7 @@
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
                 </form>
-              </div><!-- /.modal -->
+              </div>
         </div>
         <?php include PATH_BASE . '/tpl/footer.php'; ?>
     </body>

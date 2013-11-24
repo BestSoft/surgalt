@@ -7,14 +7,11 @@ class Calendar {
     public $Tag;
     public $StartDate;
     public $EndDate;
-    public $Status;
-    public $IsDay;
     public $TypeUserID;
     public $Description;
     public $Repeatable;
     public $RepeatEndDate;
     public $IsPrivate;
-    public $CommentID;
     public $InsertDate;
     public $UpdateDate;
     static $instance;
@@ -27,51 +24,72 @@ class Calendar {
         $this->user = User::getInstance();
 
         $this->UserID = $this->user->getUsrID();
+        $this->TypeUserID = $this->user->getUsrTpID();
+        
+        $date = getdate();
+        $year = $date['year'];
+        $month = $date['mon'];
+        $day = $date['mday'];
+        
+        $this->InsertDate = $year."-".$month."-".$day;
+        $this->UpdateDate = $year."-".$month."-".$day;
 
         if (isset($_GET['action'])) {
             $this->day = $_POST['day'];
             $this->Title = $_POST['title'];
             $this->Location = $_POST['location'];
             $this->Tag = $_POST['tag'];
-            $this->StartDate = $_POST['strdt']; 
-            $this->EndDate = $_POST['enddt'];
-            $this->Status = $_POST['stts'];
-            $this->IsDay = $_POST['isday'];
-            $this->TypeUserID = $_POST['tpusrid'];
+            $this->StartDate = $_POST['strdt']." 00:00:00.0"; 
+            $this->EndDate = $_POST['enddt']." 23:59:59.0";
             $this->Description = $_POST['desc'];
             $this->Repeatable = $_POST['rptable'];
-            $this->RepeatEndDate = $_POST['rptenddt'];
+            $this->RepeatEndDate = $this->EndDate;
             $this->IsPrivate = $_POST['isprivate'];
-            $this->CommentID = $_POST['commendid'];
-            $this->InsertDate = $_POST['insid']; 
-            $this->UpdateDate = $_POST['updid'];
         }
     }
 
     function InsertCalendar() {
+        
+        
         $sql = "insert into calendar values(null, '" . $this->Title . "',"
                 . "'" . $this->Location . "',"
                 . "'" . $this->Tag . "',"
                 . "" . $this->StartDate . ","
                 . "" . $this->EndDate . ","
-                . "" . $this->Status . ","
-                . "" . $this->IsDay . ","
                 . "" . $this->TypeUserID . ","
                 . "" . $this->Description . ","
                 . "" . $this->Repeatable . ","
                 . "" . $this->RepeatEndDate . ","
-                . "" . $this->IsPrivate . ","
                 . "" . $this->UserID . ","
                 . "" . $this->InsertDate . ","
                 . "" . $this->UserID . ","
-                . "" . $this->UpdateDate . ")";
-        $query = $this->db->query($sql);
+                . "" . $this->UpdateDate . ","
+                . "" . $this->IsPrivate . ")";
+        echo $sql;
+        if($query = $this->db->query($sql)){
+            echo 'Done!';
+        }
+        else{
+            echo 'Failed!';
+        }
+        
         if (isset($_GET['event'])) {
             header("location: /surgalt/?host=" . HOSTNAME);
             die();
         }
     }
 
+    public static function Allevent(){
+        $db = DataBase::getInstance();
+        $user = User::getInstance();
+
+        $UserID = $user->getUsrID();
+        $sql = "select * from calendar";
+        $query = $db->query($sql);
+        echo $db->error;
+        return $query;
+    }
+    
     public static function selectAllEvent() {
         $db = DataBase::getInstance();
         $user = User::getInstance();
@@ -89,7 +107,7 @@ class Calendar {
         
         $UserID = $user->getUsrID();
         $UserType = $user->getUsrTpID();
-        $sql = "select * from teachertimetable where TchID = ". $UserID." and UsrTpID = ". $UserType;
+        $sql = "select * from teachertimetable where TchID = ". $UserID;
         $query = $db->query($sql);
         echo $db->error;
         return $query;
@@ -101,6 +119,9 @@ class Calendar {
         
         $UserID = $user->getUsrID;
         $sql = "select * from studenttimetable where StdID = ". $UserID;
+        $query = $db->query($sql);
+        echo $db->error;
+        return $query;
     }
 
 }

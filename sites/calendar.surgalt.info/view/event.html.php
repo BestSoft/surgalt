@@ -26,7 +26,7 @@ echo $d;
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Эхлэх</label>
     <div class="col-sm-10">
-        <input type="date" class="form-control input-sm" name="strdt" id="inputPassword3">
+        <input type="date" class="form-control input-sm" name="strdt" id="inputPassword3">        
     </div>
   </div>
   <div class="form-group">
@@ -49,24 +49,22 @@ echo $d;
   </div>
   <div class="checkbox">
     <label>
-      <input type="checkbox" name="isday"> <b>Зөвхөн өнөөдөр эсэх</b>
+      <input type="checkbox" name="isprivate" value="1"> <b>Хувийн эсэх</b>
     </label>
   </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" name="isprivate"> <b>Хувийн эсэх</b>
-    </label>
-  </div>
+    <script>
+        $('.recurencetable').hide();
+        $('.reccheck').click(function(){
+            $('.recurencetable').toggle();
+        });
+    </script>
   <div class="checkbox recurence">
     <label>
-      <input type="checkbox" class="reccheck"> <b>Давтагдах эсэх</b>
+        <input type="checkbox" class="reccheck" value="1" name="rptable"> <b>Давтагдах эсэх</b>
     </label>
   </div>
     <style>
     </style>
-    <script>
-        
-    </script>
     <div class="recurencetable">
     <table>
         <tr>
