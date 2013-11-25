@@ -31,16 +31,16 @@ class Calendar {
         $month = $date['mon'];
         $day = $date['mday'];
         
-        $this->InsertDate = $year."-".$month."-".$day;
-        $this->UpdateDate = $year."-".$month."-".$day;
+        $this->InsertDate = $year.$month.$day;
+        $this->UpdateDate = $year.$month.$day;
 
         if (isset($_GET['action'])) {
             $this->day = $_POST['day'];
             $this->Title = $_POST['title'];
             $this->Location = $_POST['location'];
             $this->Tag = $_POST['tag'];
-            $this->StartDate = $_POST['strdt']." 00:00:00.0"; 
-            $this->EndDate = $_POST['enddt']." 23:59:59.0";
+            $this->StartDate = $_POST['strdt'].".0"; 
+            $this->EndDate = $_POST['enddt'].".0";
             $this->Description = $_POST['desc'];
             $this->Repeatable = $_POST['rptable'];
             $this->RepeatEndDate = $this->EndDate;
@@ -54,24 +54,18 @@ class Calendar {
         $sql = "insert into calendar values(null, '" . $this->Title . "',"
                 . "'" . $this->Location . "',"
                 . "'" . $this->Tag . "',"
-                . "" . $this->StartDate . ","
-                . "" . $this->EndDate . ","
-                . "" . $this->TypeUserID . ","
-                . "" . $this->Description . ","
-                . "" . $this->Repeatable . ","
-                . "" . $this->RepeatEndDate . ","
+                . "'" . $this->StartDate . "',"
+                . "'" . $this->EndDate . "',"
+                . "'" . $this->TypeUserID . "0000000" . $this->UserID . "',"
+                . "'" . $this->Description . "',"
+                . "'" . $this->Repeatable . "',"
+                . "'" . $this->RepeatEndDate . "',"
                 . "" . $this->UserID . ","
                 . "" . $this->InsertDate . ","
                 . "" . $this->UserID . ","
                 . "" . $this->UpdateDate . ","
-                . "" . $this->IsPrivate . ")";
-        echo $sql;
-        if($query = $this->db->query($sql)){
-            echo 'Done!';
-        }
-        else{
-            echo 'Failed!';
-        }
+                . "" . $this->IsPrivate . ");";
+        $query = $this->db->query($sql);
         
         if (isset($_GET['event'])) {
             header("location: /surgalt/?host=" . HOSTNAME);

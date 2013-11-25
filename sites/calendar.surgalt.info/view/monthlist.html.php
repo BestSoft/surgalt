@@ -20,10 +20,7 @@ class daylist{
 daylist::selectdaylist();
 ?>
 
-
-
-<h4>Сарын үйл ажиллагааны жагсаалт</h4>
-
+<h4>Сарын жагсаалт харуулах</h4>
 <div>
     <table class="table table-bordered table-hover">
         <thead>

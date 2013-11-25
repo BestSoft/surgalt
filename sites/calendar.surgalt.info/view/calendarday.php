@@ -1,5 +1,5 @@
 <?php
-include_once PATH_BASE . "/sites/" . HOSTNAME . "/model/modCalendar.php";
+/*include_once PATH_BASE . "/sites/" . HOSTNAME . "/model/modCalendar.php";
 
 class CalendarDayView {
 
@@ -43,5 +43,5 @@ class CalendarDayView {
     
 
 }
-CalendarDayView::viewLessonTimeTable();
+CalendarDayView::viewLessonTimeTable();*/
 ?>

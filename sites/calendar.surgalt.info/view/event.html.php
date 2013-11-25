@@ -25,15 +25,35 @@ echo $d;
     <center><h3>Хугацаа</h3></center>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Эхлэх</label>
-    <div class="col-sm-10">
-        <input type="date" class="form-control input-sm" name="strdt" id="inputPassword3">        
+    <div id="datetimepicker1" class="input-append date" style="z-index: 1">
+        <input name="strdt" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
+    <span class="add-on glyphicon glyphicon-time" data-time-icon="icon-time" data-date-icon="icon-calendar">
+
+    </span>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Дуусах</label>
-    <div class="col-sm-10">
-        <input type="date" class="form-control input-sm" name="enddt" id="inputPassword3">
+    <script type="text/javascript">
+      $(function() {
+        $('#datetimepicker1').datetimepicker({
+          language: 'pt-BR'
+        });
+      });
+    </script>
     </div>
+    <div class="form-group">
+      <label for="inputPassword3" class="col-sm-2 control-label">Дуусах</label>
+      <div id="datetimepicker2" class="input-append date" style="z-index: 1">
+      <input name="enddt" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
+      <span class="add-on glyphicon glyphicon-time" data-time-icon="icon-time" data-date-icon="icon-calendar">
+
+      </span>
+    </div>
+  <script type="text/javascript">
+    $(function() {
+      $('#datetimepicker2').datetimepicker({
+        language: 'pt-BR'
+      });
+    });
+  </script>
   </div>
   <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label"> Төлөв </label>
@@ -65,7 +85,7 @@ echo $d;
   </div>
     <style>
     </style>
-    <div class="recurencetable">
+    <!--<div class="recurencetable">
     <table>
         <tr>
             <td>
@@ -172,6 +192,6 @@ echo $d;
           <input type="radio" name="optionsRadios5" id="optionsRadios1" value="option1" checked>
          Дуусах
         </label>
-    </div>
+    </div>-->
 
 
