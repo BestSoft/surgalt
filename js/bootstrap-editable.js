@@ -4682,7 +4682,7 @@ Editableform based on Twitter Bootstrap 3
         '<i class="glyphicon glyphicon-ok"></i>'+
       '</button>'+
       '<button type="button" class="btn btn-default btn-sm editable-cancel">'+
-        '<i class="glyphicon glyphicon-remove"></i>'+
+        '<i class="glyphicon glyphicon-ban-circle"></i>'+
       '</button>';         
     
     //error classes

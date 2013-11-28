@@ -1,0 +1,155 @@
+    .global_1
+        {
+            width: 150px;
+        }
+    .global_2
+        {
+            width: 200px;
+        }
+    .bosoo_mid
+    {
+        
+    }
+    .irtsiin_nud
+    {
+        color: blue;
+        vertical-align: central;
+        text-align: center;
+        cursor: pointer;
+    }
+    .zoodog
+    {
+        overflow-x: scroll;
+        max-width:530px;
+        float:left;
+    }
+    .ehlel
+    {
+        margin-left: 0px;
+    }
+    .table_1
+    {        
+        border-right-color: black;   
+        margin-right: 0px;
+    }
+    .table_3
+    {
+        border-left: 1px;
+        border-style: solid;
+        border-left-color: black;
+        margin-right: 0px;
+    }
+    .neg_2
+    {
+        padding-left: 5px;
+    }
+    .neg_3
+    {
+        padding-left: 15px;
+    }
+    .dotorhi_1
+    {
+        display: none;
+    }
+    .ded_menu
+    {
+        text-decoration: underline;
+        font-style: normal;
+        font-size: 12px;
+    }
+    .table
+    {
+        border-radius: 0px 0px 0px 0px;
+        width: auto;
+        height: auto;
+        float: left;
+    }
+    .row-fluid
+    [class*="span"]
+    {
+        margin-left: 0px;
+    }
+    .journal
+    {
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+    .Zanguu
+    {
+        padding-top: 10px;
+        padding-left: 0px;
+        padding-bottom: 20px;
+    }
+    .Garchig
+    {
+        margin-top: 0px;
+    }
+    td
+    {
+        white-space: nowrap;
+        padding-left: 3px;
+        padding-bottom: 4px;
+        padding-top: 3px;
+        padding-right: 8px;
+        vertical-align: middle;
+    }
+    td.gg
+    {
+        white-space: wrap;
+    }
+    .dun_1
+    {
+        cursor: pointer;
+        color: blue;
+    }
+    #songolt_dun
+    {
+        padding-left: 0px;
+        padding-bottom: 10px;
+    }
+    .First_cell
+    {
+        font-weight: bold;
+    }
+    .dundaj
+    {
+        color: green;
+        font-weight: bold;
+    }
+    .dundaj_1
+    {
+        font-style: italic;
+        font-weight: bold;
+    }
+    .tolgoi_nud
+    {
+         font-style: italic;
+         font-weight: inherit;
+    }
+    .journal_huree
+    {
+        display: block;
+        border: 1px solid #ccc;
+        padding-bottom: 100px;
+        padding-left: 60px;
+        padding-right: 60px;
+        padding-top: 0px;
+    }
+    #hetsuudee
+    {
+        margin-top: 70px;
+    }
+    .dogol
+    {
+        padding-left: 60px;
+    }
+    .hoyor_dahi_nud
+    {
+        padding-left: 40px;
+        font-style: italic;
+        color: grey;
+    }
+    #boloodohlee
+    {
+     padding-bottom: 34px;   
+    }

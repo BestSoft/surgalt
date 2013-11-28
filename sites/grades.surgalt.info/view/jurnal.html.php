@@ -11,9 +11,11 @@
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/css/style.css" />
         <script src="<?php echo BASE_URL; ?>/js/jquery.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/bootstrap.js"></script>
+        <script src="<?php echo BASE_URL; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/bootstrap-editable.js"></script>
+        <script src="<?php echo BASE_URL; ?>/js/bootstrap-editable.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/script.js"></script>
-        <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/script.js"></script>
+        
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
@@ -22,10 +24,23 @@
         <?php include PATH_BASE . "/sites/" . HOSTNAME . "/view/GradeView_class.php"; ?>
         <div id="content" class="container">
             <div class="page-header">
-                <h1>Журнал <small>багшийн</small></h1>
+                <h1>Журнал <small>
+                    <?php 
+                    if($user->getUsrTpID() == 4)
+                        {
+                            echo "оюутны";
+                        }
+                        else
+                            {
+                            echo "багшийн";
+                            }
+                ?></small></h1>
+                
             </div>
             <?php include 'example3.php'; ?>
         </div>
         <?php include PATH_BASE . '/tpl/footer.php'; ?>
     </body>
+    <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/script.js"></script>
+    <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/my_func.js"></script>
 </html> 

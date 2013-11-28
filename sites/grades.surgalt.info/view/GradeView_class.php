@@ -18,8 +18,9 @@ class GradePage
                 $davhardal = array();
                 $start = null;?>
                 <div class="neg_2">
-                    <a href="?host=<?php echo HOSTNAME ?>">Одоо судалж буй хичээлүүд</a> <i class="icon-plus"></i>
+                    <a href="?host=<?php echo HOSTNAME ?>">Одоо судалж буй хичээлүүд</a> <i class="glyphicon glyphicon-plus"></i>
                 <?php 
+                $i = 0;
                 while($result = $query->fetch_assoc())
                     {
                             if($prev != $result["LsnID"])
@@ -29,15 +30,22 @@ class GradePage
                                             $start = $start."</div>"; 
                                             $davhardal = array();
                                        }      
-                                       $start = $start."<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."'>".$result["LsnCd"]."</a> <i class='icon-plus'></i>";
+                                       $start = $start."<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."'>".$result["LsnCd"]."</a> <i class='glyphicon glyphicon-plus'></i>";
+                                       $i=0;
                                 }  
                                 if(!in_array($result["LsnTpID"], $davhardal))
                                 {
-                                    $middle = "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."&isa=".$result["isAvailable"]."'>".$result["LsnNm"]."</a></div>";                                               
+                                    if($i == 0)
+                                        {
+                                            $start.= "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&irts=1'>"."Ирц"."</a></div>";
+                                        }
+                                    $middle = "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."&isa=".$result["isAvailable"]."'>".$result["LsnNm_delger"]."</a></div>";                                               
                                     $davhardal[] = $result["LsnTpID"];                            
                                     $start = $start.$middle;
+                                    $i++;
                                 }
-                                    $prev = $result["LsnID"];                                                
+                                    $prev = $result["LsnID"];  
+                                    
                     }
                     echo $start."</div>";
                     ?>
@@ -47,7 +55,7 @@ class GradePage
               else
                   {
                     ?>
-                    <div class="neg_2"><a href="#">Та энэ жил хичээл үзээгүй байна</a> <i class="icon-remove"></i></div>
+                    <div class="neg_2"><a href="#">Та энэ жил хичээл үзээгүй байна</a> <i class="glyphicon glyphicon-plus"></i></div>
                         <?php
           }
   }
@@ -64,7 +72,7 @@ class GradePage
             if(mysqli_num_rows($query) > 0)
                 {
                        echo "<div class='neg_2'>";
-                        echo "<a href='#'>Одоо зааж буй хичээлүүд</a> <i class='icon-plus'></i>";
+                        echo "<a href='?host=".HOSTNAME."'>Одоо зааж буй хичээлүүд</a> <i class='glyphicon glyphicon-plus'></i>";
                             while($result = mysqli_fetch_assoc($query))
                                 {
                                     if(!in_array($result["LsnID"], $omnoh_lesson))
@@ -76,7 +84,7 @@ class GradePage
                                                         echo "</div>";
                                                 }
                                             echo "<div class='neg_2 dotorhi_1'>";
-                                                echo "<a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."'>".$result["LsnCd"]."</a> <i class='icon-plus'></i>";
+                                                echo "<a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."'>".$result["LsnCd"]."</a> <i class='glyphicon glyphicon-plus'></i>";
                                             $j = 0;
                                         }
                                         if($omnoh_type != $result["LsnTpID"])
@@ -85,7 +93,7 @@ class GradePage
                                                     {
                                                        echo "</div>"; 
                                                     }
-                                                echo "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."'>".$result["LsnNm"]."</a> <i class='icon-plus'></i>";
+                                                echo "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&lesson=".$result["LsnID"]."&type=".$result["LsnTpID"]."'>".$result["LsnNm_delger"]."</a> <i class='glyphicon glyphicon-plus'></i>";
                                                     $j++;
                                             }
                                             echo "<div class='neg_2 dotorhi_1'>";
@@ -100,7 +108,7 @@ class GradePage
                 }
                 else
                     {
-                        echo "<div class='neg_2'><a href='#'>Та энэ семистер хичээл заагаагүй байна</a> <i class='icon-remove'></div>";
+                        echo "<div class='neg_2'><a href='#'>Та энэ семистер хичээл заагаагүй байна</a> <i class='glyphicon glyphicon-remove'></div>";
                     }
             }
  
@@ -112,7 +120,7 @@ class GradePage
                 $start = null;
         if(mysqli_num_rows($query) > 0)
             { ?>
-            <div class="neg_2"><a href="?host=<?php echo HOSTNAME ?>&action=2">Өмнө судалж байсан хичээлүүд</a> <i class="icon-plus"></i>
+            <div class="neg_2"><a href="?host=<?php echo HOSTNAME ?>&action=2">Өмнө судалж байсан хичээлүүд</a> <i class="glyphicon glyphicon-plus"></i>
                 <?php
                 while($result = $query->fetch_assoc())
                     {
@@ -123,12 +131,9 @@ class GradePage
                                     {
                                         $start.="</div>";
                                     }
-                                    $start.= "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&year=".$result["LsnYear"]."'>".$year."</a> <i class='icon-plus'></i>";
+                                    $start.= "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&year=".$result["LsnYear"]."'>".$year."</a> ";
                             }
-                        $middle = "<div class='neg_2 dotorhi_1'><a href='?host=".HOSTNAME."&year=".$result["LsnYear"]."'>".$result["LsnCd"]."</a></div>";
-                        
                         $prev = $result["LsnYear"];
-                        $start.=$middle;
                     }
                     $start.="</div>";
                     echo $start;
@@ -138,7 +143,7 @@ class GradePage
             }
             else
                 {?>
-                <div class='neg_2'><a href='#'>Өмнө үзсэн хичээл байхгүй байна</a> <i class='icon-remove'></i></div><?php 
+                <div class='neg_2'><a href='#'>Өмнө үзсэн хичээл байхгүй байна</a> <i class='glyphicon glyphicon-remove'></i></div><?php 
                 }
             }
             
@@ -150,8 +155,10 @@ class GradePage
                 $start = null;
                 $prev = 0;
                 ?>
-                    <div class="neg_2"><a href="#">Өмнө зааж байсан хичээлүүд</a> <i class="icon-plus"></i>
+                    <div class="neg_2"><a href="?host=<?php echo HOSTNAME; ?>&action=1">Өмнө зааж байсан хичээлүүд</a> <i class="glyphicon glyphicon-plus"></i>
                 <?php 
+                $a = '?host='.HOSTNAME.'&action=3';
+                $b = "?host=".HOSTNAME."&action=2";
                 while($result = mysqli_fetch_assoc($query))
                     {
                         if($prev != $result["LsnYear"])
@@ -160,11 +167,13 @@ class GradePage
                                     {
                                         $start .= "</div>";
                                     }                    
-                                    $start.= '<div class="neg_2 dotorhi_1"><a href="#">'.  Decode::DecodeYear($result["LsnYear"]).'</a><i class="icon-plus"></i>';
+                                    $start.= '<div class="neg_2 dotorhi_1"><a href="'.$b.'">'.  Decode::DecodeYear($result["LsnYear"]).'</a><i class="glyphicon glyphicon-plus"></i>';
                             }                
-                            $middle = "<div class='neg_2 dotorhi_1'><a href='#'>".$result["LsnCd"]."</a></div>";
+                            $middle = "<div class='neg_2 dotorhi_1'><a href='".$a."'>".$result["LsnCd"]."</a></div>";
                             $start.= $middle;
                             $prev = $result["LsnYear"];
+                            $a="?host=".HOSTNAME."&action=4";
+                            $b="?host=".HOSTNAME."&action=5";
                     }
                     echo $start.="</div>";
                     ?>
@@ -173,14 +182,14 @@ class GradePage
                     }
                     else
                         {
-                        ?><div class='neg_2'><a href='#'>Танд өмнө зааж байсан хичээл алга</a> <i class='icon-remove'></i></div><?php
+                        ?><div class='neg_2'><a href='#'>Танд өмнө зааж байсан хичээл алга</a> <i class='glyphicon glyphicon-remove'></i></div><?php
                         }
            }
            
    Public static function DrawSubMenu()
            {
                 ?>
-                   <div class="neg_2"><a href="#">Туслах</a> <i class="icon-plus"></i>
+                   <div class="neg_2"><a href="#">Туслах</a> <i class="glyphicon glyphicon-plus"></i>
                         <div class="neg_2 dotorhi_1"><a href="http://www.unimis.edu.mn/student/oyutan.pdf">Оюутны гарын авлага</a>
                         </div>
                         <div class="neg_2 dotorhi_1"><a href="http://must.edu.mn/beta3/menu136">Дүгнэх журам үзэх</a>
@@ -193,7 +202,7 @@ class GradePage
     public static function DrawSubMenuReport()
             {
                     ?>
-                        <div class="neg_2"><a href="#">Тайлан</a> <i class="icon-plus"></i>
+                        <div class="neg_2"><a href="#">Тайлан</a> <i class="glyphicon glyphicon-plus"></i>
                             <div class="neg_2 dotorhi_1"><a href="#">Оюутны жилийн тайлан</a></div>
                             <div class="neg_2 dotorhi_1"><a href="#">Оюутны улирлын тайлан</a></div>
                             <div class="neg_2 dotorhi_1"><a href="#">Оюутны чадварын тайлан</a></div>

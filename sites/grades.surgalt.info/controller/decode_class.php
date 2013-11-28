@@ -4,6 +4,25 @@
 
 class Decode
     {
+    public static function checkTuluv($useg)
+             {
+                if($useg == 1)
+                    {
+                        return 'И';
+                    }
+                if($useg == 2)
+                    {
+                        return "Т";
+                    }
+                if($useg == 3)
+                    {
+                        return 'Ө';
+                    }
+                if($useg == 4)
+                    {
+                        return 'Ч';
+                    }
+             }
     public static function DecodePar($argument)
                         {
                             $argument = (int)$argument;

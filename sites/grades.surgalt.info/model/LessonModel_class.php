@@ -30,7 +30,7 @@ class Lesson
                         $user = User::getInstance();
                         $user_id = $user->getUsrID();
                         $db = DataBase::getInstance();
-                        $sql = "select b.LsnTpID,a.LsnID,a.LsnCd,c.LsnNm,a.isAvailable from lesson a inner join studenttimetable b inner join lessontype c on a.LsnID = b.LsnID and b.LsnTpID = c.LsnID where StdID = ".$user_id." order by a.LsnCd,c.LsnNm";            
+                        $sql = "select b.LsnTpID,a.LsnID,a.LsnCd,c.LsnNm_delger,a.isAvailable from lesson a inner join studenttimetable b inner join lessontype c on a.LsnID = b.LsnID and b.LsnTpID = c.LsnID where StdID = ".$user_id." order by a.LsnCd,c.LsnNm";            
                         $query = $db->query($sql);                        
                         return $query;
     }
@@ -39,7 +39,7 @@ class Lesson
                         $user = User::getInstance();
                         $user_id = $user->getUsrID();
                         $db = DataBase::getInstance();
-                        $sql = "select a.LsnID,a.LsnTm,a.TchID,a.LsnTpID,b.LsnNm,c.LsnCd,c.LsnYear from teachertimetable a inner join lessontype b inner join lesson c on b.LsnID = a.LsnTpID and a.LsnID = c.LsnID where a.TchID = ".$user_id." order by c.LsnCd,a.LsnTpID";
+                        $sql = "select a.LsnID,a.LsnTm,a.TchID,a.LsnTpID,b.LsnNm_delger,c.LsnCd,c.LsnYear,c.LsnNm from teachertimetable a inner join lessontype b inner join lesson c on b.LsnID = a.LsnTpID and a.LsnID = c.LsnID where a.TchID = ".$user_id." order by c.LsnCd,a.LsnTpID";
                         $query = $db->query($sql);
                         return $query;
                         
@@ -90,10 +90,12 @@ class Lesson
                     $user_id = $user->getUsrID();
                     $db = DataBase::getInstance();
                     $isa = $isav;
-                    $sql = "select a.Week,c.TpcNm,a.SelfPnt,d.Pnt from lessoncontent a inner join 
-            lessoncontenttopic b inner join topic c inner join homework d inner join lesson e on 
-            a.LsnCntID = b.LsnCntID and b.TpcID = c.TpcID and a.LsnCntID = d.LsnCntID and e.LsnID = a.LsnID
-            where d.StdID = ".$user_id." and a.LsnTpID = ".$lesson_type_id." and a.LsnID = ".$lesson_id." and e.isAvailable = ".$isa." order by a.Week";                    
+                    $sql = "select a.`Pnt`,b.`Week`,b.`SelfPnt`,b.`Title`,c.`LsnNm`,c.`LsnCd`,d.`LsnNm_delger` from ((homework a inner join 
+lessoncontent b on a.`LsnCntID` = b.`LsnCntID`) inner join lesson c on b.`LsnID` = c.`LsnID`)
+inner join lessontype d on d.`LsnID` = b.`LsnTpID`
+where b.`LsnID` = ".$lesson_id." and b.`LsnTpID` = ".$lesson_type_id." and c.`isAvailable` = ".$isa." 
+and a.`StdID` = ".$user_id."
+order by b.`Week`";
                     $query = $db->query($sql);
                     return $query;
             }
@@ -103,10 +105,10 @@ class Lesson
                     $user = User::getInstance();
                     $user_id = $user->getUsrID();
                     $db = DataBase::getInstance();                    
-                    $sql = "select a.Title,a.LsnTpID,a.Week,a.SelfPnt,b.Pnt,c.LsnNm from 
-lessoncontent a inner join homework b inner join lessontype c
-on a.LsnCntID = b.LsnCntID and a.LsnTpID = c.LsnID where
-a.LsnID = ".$lesson_id." and b.StdID = ".$user_id." order by a.LsnTpID";                    
+                    $sql = "select a.`Pnt`,b.`Title`,b.`Week`,b.`SelfPnt`,c.`LsnNm`,c.`LsnCd`,d.`LsnNm_delger` from ((homework a inner join lessoncontent b on a.`LsnCntID`=b.`LsnCntID`)inner join lesson c 
+on c.`LsnID`=b.`LsnID`) inner join lessontype d on d.`LsnID` = b.`LsnTpID`
+where a.`StdID` = ".$user_id." and b.`LsnID` = ".$lesson_id."
+order by b.`Week`";                    
                     $query = $db->query($sql);
                     return $query;
             }
@@ -115,10 +117,10 @@ a.LsnID = ".$lesson_id." and b.StdID = ".$user_id." order by a.LsnTpID";
                     $user = User::getInstance();
                     $user_id = $user->getUsrID();
                     $db = DataBase::getInstance();
-                    $sql = "select Distinct b.LsnCd,b.LsnID,b.LsnNm,c.UsrNm,c.UsrCd from 
-                        studenttimetable a inner join lesson b inner join user c on
-                        a.LsnID = b.LsnID and a.TchID = c.UsrID where 
-                        a.StdID = ".$user_id." order by a.LsnID ";
+                    $sql = "select a.`Pnt`,c.`LsnNm`,d.UsrCd,d.UsrNm,c.`LsnNm`,c.`LsnID`,c.LsnCd from ((homework a inner join lessoncontent b on a.`LsnCntID`=b.`LsnCntID`)inner join lesson c on c.`LsnID`=b.`LsnID`
+)inner join user d on d.UsrID = a.`InsID`
+where a.`StdID` = ".$user_id."
+order by b.`LsnID`";
                     $query = $db->query($sql);
                     return $query;
             }
@@ -212,6 +214,95 @@ a.LsnID = ".$lesson_id." and b.StdID = ".$user_id." order by a.LsnTpID";
                             $query = $db->query($sql);
                             return $query;
              }
+       public static function GetStudentLesson_irts($lsnid)
+               {
+                            $lesson_id = $lsnid;
+                            $db = DataBase::getInstance();
+                            $user = User::getInstance();
+                            $std_id = $user->GetUsrID();
+                            $sql = "select a.`AttSta`,a.`UsrID`,b.`LsnID`,c.`LsnNm`,c.`LsnCd`,b.`LsnTpID`,d.`LsnNm`,b.`Week`,e.UsrNm,e.UsrCd,b.`Title` from (attendance a inner join lessoncontent b on a.`LsnCntID` = b.`LsnCntID` 
+inner join lesson c on c.`LsnID` = b.`LsnID` inner join lessontype d on d.`LsnID` = b.`LsnTpID`)
+left join user e on e.UsrID = a.`InsID`
+where a.`UsrID` = ".$std_id." and b.`LsnID` = ".$lesson_id."
+order by b.`Week`";
+                            $query = $db->query($sql);
+                            return $query;
+               }
+       public static function Oyuutnii_ners_avah($lsnid,$lsnTm=NULL)
+             {
+                if(isset($lsnTm))
+                    {
+                        $cond = " and a.LsnTm=".$lsnTm." ";
+                    }
+                    else 
+                        {
+                            $cond = "";
+                        }
+                $db = DataBase::getInstance();
+                $tchid = 1;
+                $sql = "select b.UsrID,b.UsrCd,b.UsrNm,a.`LsnTm`,a.StdID,a.LsnID from studenttimetable a 
+                    inner join user b on a.`StdID` = b.UsrID where 
+                    a.`LsnID` = ".$lsnid." and a.`TchID` = ".$tchid.$cond." 
+                        order by a.StdID";
+                $query = $db->query($sql);
+                return $query;
+             }
+     public static function Hicheeliin_aguulga_avah($lsnid,$lsntp=NULL)
+             {
+                if(isset($lsntp))
+                                {
+                                    $cond = " and a.LsnTpID =".$lsntp." ";
+                                }
+                                else
+                                    {
+                                        $cond = "";
+                                    }
+                $db = DataBase::getInstance();
+                $sql = "select a.`LsnCntID`,a.`Title`,b.`LsnNm`,a.`Week`,a.`LsnID`,a.LsnTpID,a.SelfPnt,b.LsnNm_delger,c.LsnCd from (lessoncontent a
+inner join lessontype b on a.`LsnTpID` = b.`LsnID`) inner join lesson c on  c.`LsnID` = a.`LsnID`
+where a.`LsnID` = ".$lsnid.$cond." and c.`isAvailable` = 1 order by  a.`Week`
+";
+                $query = $db->query($sql);
+                return $query;
+             }
+     public static function Hicheeliin_dun_avah($lsnid,$lsntp=NULL)
+             {
+             if(isset($lsntp))
+                                {
+                                    $cond = " and a.LsnTpID =".$lsntp." ";
+                                }
+                                else
+                                    {
+                                        $cond = "";
+                                    }
+                $db = DataBase::getInstance();
+                $sql = "select b.`StdID`,a.`Title`,d.`LsnCd`,b.`Pnt`,c.`LsnNm`,a.`Week`,b.`LsnCntID` from 
+(((lessoncontent a inner join homework b on a.`LsnCntID` = b.`LsnCntID`) 
+inner join lessontype c on c.`LsnID` = a.`LsnTpID`) 
+inner join lesson d on d.`LsnID` = a.`LsnID`)
+where a.`LsnID` = ".$lsnid.$cond." and d.`isAvailable` = 1 order by b.StdID
+";
+                $query = $db->query($sql);
+                return $query;
+             }
+    public static function Oyuutnii_irts_avah()
+             {
+             $db = DataBase::getInstance();
+             $sql = "select a.`LsnCntID`,a.`UsrID`,a.`AttSta` from attendance a";
+             $query = $db->query($sql);
+             return $query;
+             }
+    public static function GetTailan($lsnid,$cnt_id)
+            {
+             $db = DataBase::getInstance();
+             $sql = "select a.`LsnCntID`,a.`StdID`,a.`Pnt`,b.`Title`,b.`Week`,b.`SelfPnt`,c.`LsnNm_delger`,d.`LsnNm`,d.`LsnCd`
+from homework a inner join lessoncontent b on a.`LsnCntID`=b.`LsnCntID` 
+inner join lessontype c on c.`LsnID`=b.`LsnTpID`
+inner join lesson d on d.`LsnID`=b.`LsnID`
+where a.`LsnCntID`=".$cnt_id." and b.`LsnID`=".$lsnid."";
+             $query = $db->query($sql);
+             return $query;
+            }
 }
 
 ?>

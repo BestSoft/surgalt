@@ -1303,7 +1303,7 @@ pre code {
     width: 83.33333333333334%;
   }
   .col-md-9 {
-    width: 75%;
+    width: 77%;
   }
   .col-md-8 {
     width: 66.66666666666666%;
@@ -1321,7 +1321,7 @@ pre code {
     width: 33.33333333333333%;
   }
   .col-md-3 {
-    width: 25%;
+    width: 23%;
   }
   .col-md-2 {
     width: 16.666666666666664%;
@@ -1642,7 +1642,7 @@ th {
 .table > tfoot > tr > td {
   padding: 8px;
   line-height: 1.428571429;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #dddddd;
 }
 
