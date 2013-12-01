@@ -37,14 +37,24 @@
             <?php } else { ?>
                 <div class="items">
                     <?php foreach ($this->lessons as $lesson) { ?>
-                        <div>
+                        <h3 class="lsn-<?php echo $lesson['LsnID']; ?>">
                             <?php echo $lesson['LsnNm']; ?>
-                        </div>
-                        <?php foreach ($this->tests['LsnID'] as $test) { ?>
-                            <div>
-                                <?php echo $test['TstNm']; ?>
-                            </div>
-                            <?php
+                        </h3>
+                    <p>Энэ хичээлд нийт <a href="<?php echo BASE_URL; ?>/?host=<?php echo HOSTNAME; ?>&view=question&lsnId=<?php echo $lesson['LsnID']; ?>"><?php echo $lesson['QstCnt']; ?> асуулт</a> оруулсан байна.</p>
+                        <?php
+                        if (array_key_exists($lesson['LsnID'], $this->tests)) {
+                            foreach ($this->tests[$lesson['LsnID']] as $test) {
+                                ?>
+                                <div>
+                                    <strong><?php echo $test['TstNm']; ?></strong> нь
+                                    <strong><?php echo $test['Duration']; ?></strong> минут үргэлжилэх бөгөөд нийт
+                                    <strong><?php echo $test['Pnt']; ?></strong> оноотой. Дээд талын оноог
+                                    <strong><?php echo $test['Line']; ?></strong> оноогоор таслаж
+                                    <strong><?php echo $test['PerPnt']; ?></strong> оноо руу хувилна.
+                                    <strong><?php echo $test['Status']; ?></strong>
+                                </div>
+                                <?php
+                            }
                         }
                         ?>
                         <?php
