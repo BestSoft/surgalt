@@ -34,13 +34,6 @@ class LessonModel {
         return $result;
     }
 
-    function getLessonContent($lCode) {
-        // Хичээлийн агуулга авах
-    }
-
-    function getLessonNews($lCode) {
-        //Хичээлтэй холбоотой мэдээг авах
-    }
 
 }
 

@@ -1,4 +1,12 @@
-
+<?php
+   if(isset($_GET["Lid"]))
+    {
+     if($_GET["type"] == 5)
+           { require_once PATH_BASE . "/sites/".HOSTNAME."/view/showLdefinition.php";}
+     else
+         { require_once PATH_BASE . "/sites/".HOSTNAME."/view/studentlessons.php";}
+    }
+?>
 <html>
     <head> 
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -13,45 +21,41 @@
             {
                 padding-left: 10px;
             }
-            .top{ margin-top: 50px;}
-            .topmin{ margin-top: -50px;}
+            .top{ margin-top: 100px;}
+            
+            .left{ margin-left: 200px;}
         </style>
     </head>
     <body>
-<div class="container-fluid a">
-     <h4 class='left ' > Хичээлийн самбар</h4>
+<div class="container-fluid top">
+     <h4 class='left' > Хичээлийн самбар</h4>
+     <br><br>
 <div class="row-fluid">
-    
-<div class="span3 top">
+<div class="span3">
 <!--Sidebar content-->
     <?php 
     include PATH_BASE . "/sites/".HOSTNAME."/controller/lesson_menu.php";
     include PATH_BASE . "/sites/".HOSTNAME."/model/lessoncontent.php";
-    Draw::DrawStudentLessonpartMenu();                    
+    include PATH_BASE . "/sites/".HOSTNAME."/controller/LessonController.php";
+    include PATH_BASE . "/sites/".HOSTNAME."/model/LessonModel.php";
+    Draw::DrawLessonMenu();                    
     ?>
 </div>
 <div class="span8">
-    
-<ul class="nav nav-tabs topmin" id="myTab">
-  <li class="active"><a href="#content" data-toggle="tab">Хичээлийн агуулга</a></li>
-  <li><a href="#pdf" data-toggle="tab"> PDF Файл</a></li>
-  <li><a href="#video" data-toggle="tab"> Бичлэг</a></li>
-  <li><a href="#useful" data-toggle="tab"> Ашиглах материал</a></li>
-  <li><a href="#homework" data-toggle="tab"> Даалгавар</a></li>
-</ul>
-<div class="tab-content">
-  <div class="tab-pane active" id="content"> <?php include 'lessoncontentcon.php'; ?> </div>
-  <div class="tab-pane" id="pdf"> <?php include 'newsfeed.php'; ?> </div>
-  <div class="tab-pane" id="video">  <?php include 'newsfeed.php'; ?>  </div>
-  <div class="tab-pane" id="useful">  <?php include 'newsfeed.php'; ?> </div>
-  <div class="tab-pane" id="homework">  <?php include 'newsfeed.php'; ?> </div>
-</div>
-<script>
-  $(function () {
-    $('#myTab a:last').tab('show');
-  })
-  
-</script>
+
+            <h4> Хичээлийн агуулгын төлөвлөгөө</h4>
+        <br>
+<form id="form1" name="form1" method="" action="" enctype="multipart/form-data">
+<table class="table table-hover table-bordered">
+            <tr class="warning" >
+                <td width='200px;'> Тайлбар </td>
+                <td> Утга</td>
+            </tr>
+            <?php 
+               LessonController::DrawLessonDefinitionstud();   
+             ?> 
+</table>
+</form>   
 <script>
 $(document).ready(function(){
         $(".neg_2").children("i.icon-plus").click(function(){

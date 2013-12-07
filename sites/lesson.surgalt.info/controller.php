@@ -3,7 +3,6 @@
 class Controller {
 
     private $user;
-
     function execute() {
         $view = isset($_GET['view']) ? $_GET['view'] : 'lesson';
         $this->user = User::getInstance();
