@@ -68,10 +68,17 @@
                         <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarweek">7 хоногоор</a></li>
                         <li><a href="/surgalt/index.php?host=calendar.surgalt.info&view=calendarday">Өдрөөр</a></li>
                     </ul>-->
-                    
+                    <?php
+                    $link = BASE_URL;
+                        $timestamp = mktime(0, 0, 0, $cMonth, 1, $cYear);
+                        $maxday = date("t", $timestamp);
+                        $thismonth = getdate($timestamp);
+                        $startday = $thismonth['wday'];
+                        $nMonth = $cMonth + 1;
+                    ?>
                     <table width="100%" class="table table-bordered" style="height: 500px;">
                         <tr align="center">
-                            <td colspan="7" bgcolor="#999999" style="color:#FFFFFF"><strong><?php echo $monthNames[$cMonth - 1] . ' ' . $cYear; ?></strong><a class="mymodal2" data-toggle='tooltip' data-original-title='Сараар жагсаалт харах' year='".$cYear."' month='".$cMonth."' day='".($i - $startday + 1)."'><span style='float: right;' class='glyphicon glyphicon-align-justify'></span></a></td>
+                            <td colspan="7" bgcolor="#999999" style="color:#FFFFFF"><strong><?php echo $monthNames[$cMonth - 1] . ' ' . $cYear; ?></strong><?php echo "<a class='mymodal2' data-toggle='tooltip' data-original-title='Сараар жагсаалт харах' year='".$cYear."' month='".$cMonth."'><span style='float: right;' class='glyphicon glyphicon-align-justify'></span></a>";?></td>
                         </tr>
                         <tr>
                             <div style="position: absolute; margin-top: -20px;">
@@ -92,12 +99,7 @@
                             <td align="center" bgcolor="#999999" style="color:#FFFFFF;"><strong>Бямба</strong></td>
                         </tr>
                         <?php
-                        $link = BASE_URL;
-                        $timestamp = mktime(0, 0, 0, $cMonth, 1, $cYear);
-                        echo $maxday = date("t", $timestamp);
-                        $thismonth = getdate($timestamp);
-                        $startday = $thismonth['wday'];
-                        $nMonth = $cMonth + 1;
+                        
                         $db = DataBase::getInstance();
                         $user = User::getInstance();
                         $calendarsql = "select CalID, Location, StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '" . $cYear . "/" . $cMonth . "/01 00:00:00' and '" . $cYear . "/" . $cMonth . "/".$maxday." 23:59:59') or (EndDt between '" . $cYear . "/" . $cMonth . "/01 00:00:00' and '" . $cYear . "/" . $nMonth . "/".$maxday." 23:59:59')) and TpUsrID =".$user->getUsrTpID() ."0000000" . $user->getUsrID();

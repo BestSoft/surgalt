@@ -14,33 +14,37 @@
         <script src="<?php echo BASE_URL; ?>/js/script.js"></script>
     </head>
     <body>
+        <div class="panel-heading">
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
+            </div>
     <div id="content" class="container">
+        <img src="<?php echo BASE_URL; ?>/images/main.png" style="margin-left: 23%;">
         <?php if (User::getInstance()->isGuest()) {
             ?>
-        <form class="form-inline" role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" style="float: ">
+        <form class="form-inline" role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" style="margin-left: 25%; ">
             <div class="form-group">
-              <label class="sr-only" for="exampleInputEmail2">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email" name="email">
+              <label class="sr-only" for="exampleInputEmail2">Цахим хаяг</label>
+              <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Цахим хаяг" name="email">
             </div>
             <div class="form-group">
-              <label class="sr-only" for="exampleInputPassword2">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" name="password">
+              <label class="sr-only" for="exampleInputPassword2">Нууц үг</label>
+              <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Нууц үг" name="password">
             </div>
             <div class="checkbox">
               <label>
-                <input type="checkbox"> Remember me
+                <input type="checkbox"> Сануулах
               </label>
             </div>
-            <button type="submit" class="btn btn-default">Sign in</button>
+            <button type="submit" class="btn btn-default">Нэвтрэх</button>
         </form>
             <?php
         } else {
             $user = User::getInstance();
-            echo 'Сайн байна уу, ' . $user->getUsrNm() . '!';
+            echo '<div style="margin-left: 40%;"><h3><small>Сайн байна уу,</small> ' . $user->getUsrNm() . '!</h3></div>';
         }
         ?>
     </div>
-    <?php include PATH_BASE . '/tpl/footer.php'; ?>
+        <div class="panel-footer" style="margin-top: 0%;"><?php include PATH_BASE . '/tpl/footer.php'; ?></div>
+    
 </body>
 </html> 

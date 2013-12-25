@@ -23,12 +23,9 @@ class daylist{
     function selectdaylist() {
         
         $sql = "select CalID, Location, StrtDt, EndDt, Title, Tag from calendar where StrtDt <= '" . $this->year . "/" . $this->month . "/".$this->day." 23:59:59' and '" . $this->year . "/" . $this->month . "/".$this->day." 00:00:00' <= EndDt and TpUsrID =".$this->user->getUsrTpID() ."0000000" . $this->user->getUsrID();
-        echo $sql;
+       
         $query = $this->db->query($sql);
-
-        $result = mysqli_fetch_assoc($query);
-        
-        echo "<h4>Сарын үйл ажиллагааны жагсаалт</h4>
+            echo "<h4>".$this->day."-ний үйл ажиллагааны жагсаалт</h4>
 
             <div>
                 <table class='table table-bordered table-hover'>
@@ -36,16 +33,19 @@ class daylist{
                         <td><strong>Огноо</strong></td>
                         <td><strong>Гарчиг</strong></td>
                         <td><strong>Байршил</strong></td>
-                    </thead>
-                    <tr>
+                    </thead>";
+        while($result = mysqli_fetch_assoc($query))
+        {
+         echo "<tr>
                         <td>". $result["StrtDt"]." - ".$result["EndDt"]."</td>
                         <td>". $result["Title"]."</td>
                         <td>". $result["Location"]."</td>
-                    </tr>
-                </table>
-            </div>";
+                    </tr>";
+                
     }
-}
+    echo "</table>
+            </div>";
+}   }
 $daylist = new daylist();
 $daylist->selectdaylist();
 

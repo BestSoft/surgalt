@@ -1,8 +1,3 @@
-<?php
-$d = $_POST['day'];
-echo $d;
-?>
-
 <input style="display: none;" type="text" class="form-control input-sm" id="inputday" name="day" value="<?php echo $d;?>">
   <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Гарчиг</label>
