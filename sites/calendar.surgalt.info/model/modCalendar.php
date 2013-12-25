@@ -66,7 +66,7 @@ class Calendar {
                 . "" . $this->UpdateDate . ","
                 . "" . $this->IsPrivate . ");";
         $query = $this->db->query($sql);
-        
+        echo $query;
         if (isset($_GET['event'])) {
             header("location: /surgalt/?host=" . HOSTNAME);
             die();

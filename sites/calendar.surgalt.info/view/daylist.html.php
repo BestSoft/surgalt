@@ -1,16 +1,15 @@
 <?php
-
+require_once("database.php");
 class daylist{
-    private $db;
     
     function __construct() {
         $user = User::getInstance();
-        $this->db = DataBase::getInstance();
     }
     
     public static function selectdaylist() {
+        $db = DataBase::getInstance();
         $sql = "select * from calendar";
-        $query = $this->db->query($sql);
+        $query = $db->query($sql);
 
         $result = mysqli_fetch_assoc($query);
 
@@ -19,8 +18,6 @@ class daylist{
 }
 daylist::selectdaylist();
 ?>
-
-
 
 <h4>Сарын үйл ажиллагааны жагсаалт</h4>
 

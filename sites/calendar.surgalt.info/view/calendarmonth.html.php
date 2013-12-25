@@ -94,13 +94,14 @@
                         <?php
                         $link = BASE_URL;
                         $timestamp = mktime(0, 0, 0, $cMonth, 1, $cYear);
-                        $maxday = date("t", $timestamp);
+                        echo $maxday = date("t", $timestamp);
                         $thismonth = getdate($timestamp);
                         $startday = $thismonth['wday'];
                         $nMonth = $cMonth + 1;
                         $db = DataBase::getInstance();
                         $user = User::getInstance();
-                        $calendarsql = "select CalID, Location, StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $nMonth . "/01') or (EndDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $nMonth . "/01')) and TpUsrID =".$user->getUsrTpID() ."0000000" . $user->getUsrID();
+                        $calendarsql = "select CalID, Location, StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $cMonth . "/".$maxday."') or (EndDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $nMonth . "/".$maxday."')) and TpUsrID =".$user->getUsrTpID() ."0000000" . $user->getUsrID();
+                        echo $calendarsql;
                         $query = $db->query($calendarsql);
                         include PATH_BASE . "/sites/" . HOSTNAME . "/controller/calendarDecode.php";
                         $minii = array();
@@ -128,7 +129,7 @@
                                     $startdate = calendarDecode::convertDate($minii[$j]["StrtDt"]);
                                     $enddate = calendarDecode::convertDate($minii[$j]["EndDt"]);
                                     $now = $cYear . $cMonth . $cDay;
-                                    $now = (double) $now;
+                                    $now = (double)$now;
                                     if ($startdate <= $now && $now <= $enddate) {
                                         echo "<a class='glyphicon glyphicon-pushpin privateevent' data-toggle='tooltip' data-original-title='" . $minii[$j]["Title"] . " => " . $minii[$j]["Location"] . "' >"." ".$minii[$j]["Title"]."</a>";
                                     }
