@@ -100,8 +100,7 @@
                         $nMonth = $cMonth + 1;
                         $db = DataBase::getInstance();
                         $user = User::getInstance();
-                        $calendarsql = "select CalID, Location, StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $cMonth . "/".$maxday."') or (EndDt between '" . $cYear . "/" . $cMonth . "/01' and '" . $cYear . "/" . $nMonth . "/".$maxday."')) and TpUsrID =".$user->getUsrTpID() ."0000000" . $user->getUsrID();
-                        echo $calendarsql;
+                        $calendarsql = "select CalID, Location, StrtDt, EndDt, Title, Tag from calendar where ((StrtDt between '" . $cYear . "/" . $cMonth . "/01 00:00:00' and '" . $cYear . "/" . $cMonth . "/".$maxday." 23:59:59') or (EndDt between '" . $cYear . "/" . $cMonth . "/01 00:00:00' and '" . $cYear . "/" . $nMonth . "/".$maxday." 23:59:59')) and TpUsrID =".$user->getUsrTpID() ."0000000" . $user->getUsrID();
                         $query = $db->query($calendarsql);
                         include PATH_BASE . "/sites/" . HOSTNAME . "/controller/calendarDecode.php";
                         $minii = array();
