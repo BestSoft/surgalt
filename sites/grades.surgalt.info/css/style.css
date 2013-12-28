@@ -41,7 +41,9 @@
     }
     .neg_2
     {
-        padding-left: 5px;
+        padding-left: 0px;
+        font-size: 12px;
+        font-weight: bold;
     }
     .neg_3
     {
@@ -50,12 +52,30 @@
     .dotorhi_1
     {
         display: none;
+        font-size: 14px;
+        padding-left: 10px;
+        padding-top: 5px;
+        font-weight: normal;
+    }
+    .underline_1
+    {
+        text-decoration:underline;
+        font-style: italic;
+    }
+    .dotorhi_1 > a
+    {
+        font-weight: bold;
+    }
+    .dotorhi_1 > i
+    {
+        float: right;
     }
     .ded_menu
     {
-        text-decoration: underline;
-        font-style: normal;
-        font-size: 12px;
+        padding-left: 0px;
+        position: absolute;
+        top: 13px;
+        right: 5px;
     }
     .table
     {
@@ -106,6 +126,9 @@
     {
         padding-left: 0px;
         padding-bottom: 10px;
+        width: 50px;
+        top: 40%;
+        right: 40px;
     }
     .First_cell
     {
@@ -152,4 +175,39 @@
     #boloodohlee
     {
      padding-bottom: 34px;   
+    }
+    .glyphicon
+    {
+     cursor: s-resize;
+    }
+    .garchig
+    {
+        padding-top: 0px;
+        margin-top: -30px;
+    }
+    .white, .white a 
+    {
+        color: #fff;
+    }
+    .blue, .blue a 
+    {
+        color: #428BCA;
+    }
+    li.neg_2
+    {
+        margin-bottom: 0px;
+    }
+    .baruun
+    {
+        text-align: right;
+    }
+    .table_header
+    {
+        font-weight: bold;
+        font-style: italic;
+    }
+    .btn_float
+    {
+        width: 30px;
+        margin-bottom: 3px;
     }

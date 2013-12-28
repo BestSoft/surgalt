@@ -1,10 +1,6 @@
 <?php
 include_once 'database1.php';
 
-
-
-
-
 class Dun
 {
     public static function Insert_dun($std_id,$cnt_id)
@@ -76,7 +72,6 @@ function insert_and_update()
         }
         else
         {
-            echo "SS";
         }
 }
 insert_and_update();

@@ -14,14 +14,17 @@
         <script src="<?php echo BASE_URL; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/bootstrap-editable.js"></script>
         <script src="<?php echo BASE_URL; ?>/js/bootstrap-editable.min.js"></script>
-        <script src="<?php echo BASE_URL; ?>/js/script.js"></script>
+        <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/my_function.js"></script>
+        <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/Leftmenu.js"></script>
+        <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/script.js"></script>
         
     </head>
     <body>
         <?php include PATH_BASE . '/tpl/menu.php'; ?>
-        <?php include PATH_BASE . "/sites/" . HOSTNAME . "/controller/decode_class.php"; ?>
-        <?php include PATH_BASE . "/sites/" . HOSTNAME . "/model/LessonModel_class.php"; ?>        
-        <?php include PATH_BASE . "/sites/" . HOSTNAME . "/view/GradeView_class.php"; ?>
+        <?php include PATH_BASE . '/sites/' . HOSTNAME . '/decode/decode.php'; ?>
+        <?php include PATH_BASE.'/sites/'.HOSTNAME."/controller/left_menu_cont.php";?>
+        <?php include PATH_BASE.'/sites/'.HOSTNAME."/controller/Spast.cont.php"; ?>
+        <?php include PATH_BASE.'/sites/'.HOSTNAME."/controller/Tpast.cont.php"; ?>
         <div id="content" class="container">
             <div class="page-header">
                 <h1>Журнал <small>
@@ -37,10 +40,10 @@
                 ?></small></h1>
                 
             </div>
-            <?php include 'example3.php'; ?>
+            <?php 
+                include 'content.php'; 
+            ?>
         </div>
         <?php include PATH_BASE . '/tpl/footer.php'; ?>
     </body>
-    <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/script.js"></script>
-    <script src="<?php echo BASE_URL; ?>/sites/<?php echo HOSTNAME; ?>/js/my_func.js"></script>
 </html> 
